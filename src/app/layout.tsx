@@ -1,0 +1,112 @@
+import type { Metadata, Viewport } from "next";
+import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+
+import { AppProviders } from "@/components/providers/app-providers";
+import { site } from "@/lib/site";
+import "./globals.css";
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+export const viewport: Viewport = {
+  themeColor: "#04060d",
+  width: "device-width",
+  initialScale: 1,
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(site.url),
+  title: {
+    default: `${site.name} — Limpieza láser de alta precisión`,
+    template: `%s · ${site.name}`,
+  },
+  description: site.description,
+  keywords: [
+    "limpieza láser",
+    "limpieza laser",
+    "restauración láser",
+    "remover óxido",
+    "remover pintura",
+    "limpieza sin químicos",
+    "limpieza de fachadas",
+    "restauración de monumentos",
+    "limpieza industrial",
+    "ablación láser",
+  ],
+  authors: [{ name: site.name }],
+  creator: site.name,
+  applicationName: site.name,
+  category: "technology",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "es_AR",
+    url: site.url,
+    siteName: site.name,
+    title: `${site.name} — Limpieza láser de alta precisión`,
+    description: site.description,
+    images: [{ url: "/logo.svg", width: 1280, height: 480, alt: site.name }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: `${site.name} — Limpieza láser de alta precisión`,
+    description: site.description,
+    images: ["/logo.svg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: site.name,
+  description: site.description,
+  url: site.url,
+  email: site.email,
+  image: `${site.url}/logo.svg`,
+  slogan: site.slogan,
+  areaServed: "AR",
+  knowsAbout: [
+    "Limpieza láser",
+    "Restauración de patrimonio",
+    "Remoción de óxido y pintura",
+    "Ablación láser industrial",
+  ],
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html
+      lang="es"
+      className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <AppProviders>{children}</AppProviders>
+      </body>
+    </html>
+  );
+}

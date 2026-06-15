@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 340" width="1000" height="340" fill="none">
+  <!-- PLACEHOLDER compact lockup of IMPACTO LÁSER (no tagline) for navbar/compact use. -->
+  <defs>
+    <linearGradient id="m-metal" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f7faff"/>
+      <stop offset="34%" stop-color="#ffffff"/>
+      <stop offset="56%" stop-color="#9fabbd"/>
+      <stop offset="74%" stop-color="#e9eff8"/>
+      <stop offset="100%" stop-color="#8893a6"/>
+    </linearGradient>
+    <linearGradient id="m-blue" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#9ec8ff"/>
+      <stop offset="45%" stop-color="#3d8eff"/>
+      <stop offset="100%" stop-color="#1656bf"/>
+    </linearGradient>
+    <radialGradient id="m-burst" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="22%" stop-color="#cfe4ff"/>
+      <stop offset="55%" stop-color="#3d8eff"/>
+      <stop offset="100%" stop-color="#3d8eff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="m-soft" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5"/>
+    </filter>
+    <filter id="m-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="10"/>
+    </filter>
+  </defs>
+
+  <text x="36" y="190" font-family="'Arial Black', Arial, Helvetica, sans-serif" font-weight="900"
+        font-style="italic" font-size="150" letter-spacing="1" fill="url(#m-metal)">IMPACTO</text>
+
+  <g transform="translate(852 96)">
+    <circle r="92" fill="url(#m-burst)" filter="url(#m-glow)" opacity="0.95"/>
+    <g fill="#eaf3ff" filter="url(#m-soft)">
+      <path d="M0 -110 L8 0 L0 110 L-8 0 Z"/>
+      <path d="M-110 0 L0 -7 L110 0 L0 7 Z"/>
+      <path d="M-70 -70 L5 -2 L70 70 L-5 2 Z" opacity="0.7"/>
+      <path d="M70 -70 L2 5 L-70 70 L-2 -5 Z" opacity="0.7"/>
+    </g>
+    <circle r="11" fill="#ffffff"/>
+  </g>
+
+  <text x="560" y="300" font-family="'Arial Black', Arial, Helvetica, sans-serif" font-weight="900"
+        font-style="italic" font-size="104" letter-spacing="10" fill="url(#m-blue)">L&#193;SER</text>
+</svg>

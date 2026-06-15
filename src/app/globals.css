@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* shadcn tokens — tuned to the IMPACTO LÁSER dark/electric system */
+    --background: 222 64% 4%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 50% 6%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 60% 5%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 214 100% 59%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 217 33% 14%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 33% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 214 100% 59%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 33% 16%;
+    --input: 217 33% 16%;
+    --ring: 214 100% 59%;
+
+    --radius: 0.9rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: auto; /* Lenis handles smooth scroll */
+  }
+
+  body {
+    @apply bg-ink text-foreground font-sans antialiased;
+    background-color: #04060d;
+    overflow-x: hidden;
+    font-feature-settings: "ss01", "cv01", "cv03";
+  }
+
+  /* Custom selection */
+  ::selection {
+    background: rgba(47, 139, 255, 0.32);
+    color: #ffffff;
+  }
+
+  /* Slim, on-brand scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #04060d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #1f6fe6, #103f8c);
+    border-radius: 999px;
+    border: 2px solid #04060d;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #3d8eff, #1656bf);
+  }
+
+  /* Hide native cursor on devices that support a fine pointer (custom cursor takes over) */
+  @media (hover: hover) and (pointer: fine) {
+    body.has-custom-cursor,
+    body.has-custom-cursor * {
+      cursor: none !important;
+    }
+  }
+}
+
+@layer components {
+  /* Glassmorphism surface */
+  .glass {
+    background: rgba(11, 17, 32, 0.55);
+    backdrop-filter: blur(18px) saturate(140%);
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .glass-strong {
+    background: rgba(7, 11, 22, 0.78);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  /* Gradient text */
+  .text-gradient {
+    background: linear-gradient(180deg, #ffffff 0%, #cfe4ff 55%, #6dabff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .text-gradient-laser {
+    background: linear-gradient(110deg, #6dabff 0%, #3d8eff 45%, #ffffff 60%, #2f8bff 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Hairline gradient divider */
+  .hairline {
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(47, 139, 255, 0.5),
+      transparent
+    );
+  }
+
+  /* Animated conic glow border used on premium cards/CTA */
+  .glow-border {
+    position: relative;
+    isolation: isolate;
+  }
+  .glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(47, 139, 255, 0.7),
+      rgba(47, 139, 255, 0.05) 40%,
+      rgba(47, 139, 255, 0.05) 60%,
+      rgba(109, 171, 255, 0.6)
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* The signature moving laser scan-line */
+  .laser-line {
+    position: relative;
+    overflow: hidden;
+  }
+  .laser-line::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(109, 171, 255, 0.18),
+      rgba(255, 255, 255, 0.45),
+      rgba(109, 171, 255, 0.18),
+      transparent
+    );
+    filter: blur(2px);
+    animation: laser-sweep 3.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  /* Section eyebrow chip */
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full border border-laser-500/30 bg-laser-500/10 px-4 py-1.5 text-xs font-medium uppercase tracking-[0.25em] text-laser-200;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Radial spotlight overlay anchored to mouse via CSS vars */
+  .spotlight {
+    background: radial-gradient(
+      600px circle at var(--mx, 50%) var(--my, 50%),
+      rgba(47, 139, 255, 0.12),
+      transparent 45%
+    );
+  }
+
+  /* Subtle technical grid */
+  .bg-tech-grid {
+    background-image:
+      linear-gradient(rgba(47, 139, 255, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(47, 139, 255, 0.05) 1px, transparent 1px);
+    background-size: 64px 64px;
+  }
+
+  .mask-fade-y {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  .mask-fade-edges {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Cinematic reveal helper used by GSAP/Framer (initial hidden state for no-JS safety) */
+.will-reveal {
+  will-change: transform, opacity;
+}
+
+/* Respect reduced motion across the board */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
