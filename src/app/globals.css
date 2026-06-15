@@ -113,6 +113,7 @@
     color: #cfe4ff;
     background: linear-gradient(110deg, #6dabff 0%, #3d8eff 45%, #ffffff 60%, #2f8bff 100%);
     background-size: 200% auto;
+    animation: text-shimmer 6s ease-in-out infinite alternate;
   }
 
   @supports ((-webkit-background-clip: text) or (background-clip: text)) {
@@ -236,6 +237,16 @@
 /* Cinematic reveal helper used by GSAP/Framer (initial hidden state for no-JS safety) */
 .will-reveal {
   will-change: transform, opacity;
+}
+
+/* Flowing sheen for accent gradient text */
+@keyframes text-shimmer {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: 100% center;
+  }
 }
 
 /* Respect reduced motion across the board */

@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { CustomCursor } from "@/components/effects/custom-cursor";
+import { ScrollProgress } from "@/components/effects/scroll-progress";
 
 // WebGL backdrop is client-only to keep it out of the server bundle.
 const SceneBackground = dynamic(
@@ -16,6 +17,7 @@ export function AppProviders({ children }: { children: React.ReactNode }) {
     <SmoothScrollProvider>
       <SceneBackground />
       <CustomCursor />
+      <ScrollProgress />
       {children}
     </SmoothScrollProvider>
   );
