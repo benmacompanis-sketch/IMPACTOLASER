@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { animate, useInView } from "framer-motion";
+import { animate, motion, useInView } from "framer-motion";
 
 import { Section } from "@/components/shared/section";
 import { Reveal } from "@/components/effects/reveal";
@@ -36,7 +36,12 @@ export function Stats() {
       <Reveal>
         <div className="glass-strong glow-border relative overflow-hidden rounded-[2rem] px-6 py-12 sm:px-12">
           <div className="laser-line pointer-events-none absolute inset-x-0 top-0 h-px" />
-          <div className="pointer-events-none absolute left-1/2 top-0 h-40 w-[40rem] max-w-full -translate-x-1/2 bg-laser-radial opacity-70" />
+          {/* breathing top glow (opacity only — keeps the -translate centring) */}
+          <motion.div
+            className="pointer-events-none absolute left-1/2 top-0 h-40 w-[40rem] max-w-full -translate-x-1/2 bg-laser-radial"
+            animate={{ opacity: [0.5, 0.9, 0.5] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          />
 
           <div className="grid grid-cols-2 gap-x-6 gap-y-12 lg:grid-cols-4">
             {stats.map((stat, i) => (
@@ -44,7 +49,19 @@ export function Stats() {
                 <div className="font-display text-5xl font-bold leading-none text-gradient-laser sm:text-6xl lg:text-7xl">
                   <Counter stat={stat} />
                 </div>
-                <p className="mt-4 max-w-[12rem] text-sm leading-snug text-muted-foreground">
+
+                {/* progress bar fills to the value (100% full · 0% empty) */}
+                <div className="mt-4 h-1 w-20 overflow-hidden rounded-full bg-white/10">
+                  <motion.div
+                    className="h-full rounded-full bg-laser-gradient shadow-glow-sm"
+                    initial={{ width: "0%" }}
+                    whileInView={{ width: `${stat.value}%` }}
+                    viewport={{ once: true, margin: "-60px" }}
+                    transition={{ duration: 1.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                </div>
+
+                <p className="mt-3 max-w-[12rem] text-sm leading-snug text-muted-foreground">
                   {stat.label}
                 </p>
                 {i < stats.length - 1 && (
