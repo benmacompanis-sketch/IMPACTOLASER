@@ -14,10 +14,10 @@ export function Technology() {
 
       <SectionHeading
         eyebrow="La tecnología"
-        title="¿Qué es la limpieza láser?"
+        title="¿Qué es la limpieza laser?"
         description={
           <>
-            La limpieza láser elimina únicamente la suciedad, pintura, óxido y
+            La limpieza laser elimina únicamente la suciedad, pintura, óxido y
             contaminantes superficiales{" "}
             <span className="text-foreground">sin afectar el material original.</span>{" "}
             Un haz de alta precisión vaporiza la capa contaminante por ablación,
@@ -32,10 +32,10 @@ export function Technology() {
           <LaserDemo />
         </div>
         <p className="mx-auto mt-5 max-w-2xl text-center text-sm text-muted-foreground">
-          <span className="text-foreground">Arrastrá el láser de lado a lado.</span> A la{" "}
+          <span className="text-foreground">Arrastrá el laser de lado a lado.</span> A la{" "}
           <span className="text-laser-200">izquierda</span> queda la superficie original recuperada;
           a la <span className="text-amber-200/90">derecha</span>, la suciedad antes de limpiar. El
-          láser solo elimina lo que está por encima del material, sin tocarlo.
+          laser solo elimina lo que está por encima del material, sin tocarlo.
         </p>
       </Reveal>
 

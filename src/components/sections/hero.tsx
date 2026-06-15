@@ -47,14 +47,14 @@ export function Hero() {
         <Reveal y={16} blur={false}>
           <span className="eyebrow mb-8">
             <span className="size-1.5 animate-pulse rounded-full bg-laser-400 shadow-glow-sm" />
-            Tecnología de limpieza láser industrial
+            Tecnología de limpieza laser industrial
           </span>
         </Reveal>
 
         {/* Headline */}
         <h1 className="font-display text-[clamp(2.6rem,8vw,6.2rem)] font-bold leading-[0.98] tracking-tight">
           <span className="block">
-            <TextReveal text="LIMPIEZA LÁSER" className="text-gradient" />
+            <TextReveal text="LIMPIEZA LASER" className="text-gradient" />
           </span>
           <span className="block">
             <TextReveal text="DE ALTA PRECISIÓN" delay={0.25} className="text-gradient-laser" />

@@ -34,7 +34,7 @@ export function Footer() {
           <div>
             <Logo variant="full" className="h-20 w-auto" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              {site.slogan}. Limpieza láser industrial de alta precisión, sin agua,
+              {site.slogan}. Limpieza laser industrial de alta precisión, sin agua,
               sin químicos y sin abrasivos.
             </p>
 

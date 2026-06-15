@@ -63,7 +63,7 @@ export function Navbar() {
             href="#inicio"
             onClick={(e) => handleNav(e, "#inicio")}
             className="group flex items-center gap-2"
-            aria-label={`${"IMPACTO LÁSER"} — inicio`}
+            aria-label={`${"IMPACTO LASER"} — inicio`}
           >
             <Logo variant="mark" className="h-9 w-auto -translate-y-1 sm:h-11" priority />
           </a>

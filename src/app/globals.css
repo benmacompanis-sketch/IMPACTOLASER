@@ -4,7 +4,7 @@
 
 @layer base {
   :root {
-    /* shadcn tokens — tuned to the IMPACTO LÁSER dark/electric system */
+    /* shadcn tokens — tuned to the IMPACTO LASER dark/electric system */
     --background: 222 64% 4%;
     --foreground: 210 40% 98%;
 

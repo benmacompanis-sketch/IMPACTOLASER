@@ -19,7 +19,7 @@ export function Faq() {
           align="left"
           eyebrow="Preguntas frecuentes"
           title="Todo lo que querés saber"
-          description="Respuestas claras sobre cómo funciona la limpieza láser y por qué no daña la superficie."
+          description="Respuestas claras sobre cómo funciona la limpieza laser y por qué no daña la superficie."
           className="lg:sticky lg:top-28 lg:self-start"
         />
 

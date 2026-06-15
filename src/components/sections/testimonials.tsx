@@ -14,7 +14,7 @@ export function Testimonials() {
       <SectionHeading
         eyebrow="Confianza"
         title="Resultados que hablan solos"
-        description="Patrimonio, industria y hogares eligen la limpieza láser por una razón: recuperan lo original sin arriesgarlo."
+        description="Patrimonio, industria y hogares eligen la limpieza laser por una razón: recuperan lo original sin arriesgarlo."
       />
 
       <RevealGroup className="mt-16 grid gap-5 md:grid-cols-2" stagger={0.1}>

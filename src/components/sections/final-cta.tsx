@@ -68,7 +68,7 @@ export function FinalCta() {
 
         <Reveal delay={0.2}>
           <p className="mx-auto mt-7 max-w-xl text-lg text-muted-foreground">
-            Descubrí el potencial de la limpieza láser profesional. Contanos qué
+            Descubrí el potencial de la limpieza laser profesional. Contanos qué
             superficie querés recuperar y te asesoramos sin compromiso.
           </p>
         </Reveal>

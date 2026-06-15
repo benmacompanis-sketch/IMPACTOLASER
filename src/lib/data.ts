@@ -100,7 +100,7 @@ export const comparison = {
     points: ["Agua", "Químicos", "Lijas", "Abrasión", "Polvo", "Residuos", "Daño potencial"],
   },
   laser: {
-    title: "Limpieza Láser",
+    title: "Limpieza Laser",
     points: [
       "Precisión extrema",
       "Sin contacto",
@@ -136,11 +136,11 @@ export const processSteps: ProcessStep[] = [
     step: "02",
     title: "Análisis",
     description:
-      "Definimos la longitud de onda, potencia y parámetros del láser para cada material específico.",
+      "Definimos la longitud de onda, potencia y parámetros del laser para cada material específico.",
   },
   {
     step: "03",
-    title: "Aplicación del láser",
+    title: "Aplicación del laser",
     description:
       "El haz vaporiza únicamente la capa contaminante mediante ablación, sin tocar el material base.",
   },
@@ -196,9 +196,9 @@ export type Faq = { question: string; answer: string };
 
 export const faqs: Faq[] = [
   {
-    question: "¿La limpieza láser daña la superficie?",
+    question: "¿La limpieza laser daña la superficie?",
     answer:
-      "No. El láser actúa únicamente sobre la capa contaminante que está por encima del material original. La energía está calibrada para vaporizar suciedad, óxido o pintura sin alterar el sustrato, por eso es el método elegido para patrimonio y piezas de alto valor.",
+      "No. El laser actúa únicamente sobre la capa contaminante que está por encima del material original. La energía está calibrada para vaporizar suciedad, óxido o pintura sin alterar el sustrato, por eso es el método elegido para patrimonio y piezas de alto valor.",
   },
   {
     question: "¿Utiliza químicos?",
@@ -213,7 +213,7 @@ export const faqs: Faq[] = [
   {
     question: "¿Qué materiales pueden limpiarse?",
     answer:
-      "Metales (hierro, acero, aluminio, bronce, cobre, plata, oro), piedra, mármol, cemento, ladrillo, madera, porcelanato y más. Ajustamos los parámetros del láser a cada material.",
+      "Metales (hierro, acero, aluminio, bronce, cobre, plata, oro), piedra, mármol, cemento, ladrillo, madera, porcelanato y más. Ajustamos los parámetros del laser a cada material.",
   },
   {
     question: "¿Puede utilizarse en patrimonio histórico?",

@@ -14,7 +14,7 @@ export function Comparison() {
       <SectionHeading
         eyebrow="La diferencia"
         title="No es limpiar. Es no dañar."
-        description="Los métodos tradicionales desgastan, mojan y contaminan. El láser trabaja con luz: precisión pura, sin tocar la superficie."
+        description="Los métodos tradicionales desgastan, mojan y contaminan. El laser trabaja con luz: precisión pura, sin tocar la superficie."
       />
 
       <div className="relative mt-16 grid items-stretch gap-5 lg:grid-cols-2">
@@ -52,7 +52,7 @@ export function Comparison() {
           <div className="glow-border relative h-full overflow-hidden rounded-3xl bg-gradient-to-b from-laser-500/[0.08] to-transparent p-8 shadow-glow">
             <div className="laser-line absolute inset-0" />
             <span className="text-xs font-medium uppercase tracking-[0.25em] text-laser-300">
-              Tecnología láser
+              Tecnología laser
             </span>
             <h3 className="mt-2 flex items-center gap-2 font-display text-2xl font-semibold text-white">
               {comparison.laser.title}

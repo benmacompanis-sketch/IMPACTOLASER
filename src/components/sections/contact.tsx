@@ -94,7 +94,7 @@ export function Contact() {
           </h2>
           <Reveal delay={0.2}>
             <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              Solicitá una evaluación profesional y descubrí cómo la limpieza láser
+              Solicitá una evaluación profesional y descubrí cómo la limpieza laser
               puede restaurar y recuperar superficies sin dañarlas.
             </p>
           </Reveal>

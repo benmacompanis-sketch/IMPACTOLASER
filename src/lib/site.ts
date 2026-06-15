@@ -4,14 +4,14 @@
  */
 
 export const site = {
-  name: "IMPACTO LÁSER",
+  name: "IMPACTO LASER",
   brand: {
     impacto: "IMPACTO",
-    laser: "LÁSER",
+    laser: "LASER",
   },
   slogan: "Limpieza y restauración sin dañar superficies",
   description:
-    "Limpieza láser de alta precisión: removemos pintura, óxido, grasa y contaminantes sin agua, sin químicos y sin abrasivos. Tecnología industrial que respeta la superficie original.",
+    "Limpieza laser de alta precisión: removemos pintura, óxido, grasa y contaminantes sin agua, sin químicos y sin abrasivos. Tecnología industrial que respeta la superficie original.",
   url: "https://impactolaser.com",
   // WhatsApp / teléfono: +54 9 11 5876-1471 (formato internacional para wa.me)
   whatsapp: "5491158761471",
@@ -72,7 +72,7 @@ export const navLinks = [
 ] as const;
 
 const whatsappMessage =
-  "Hola IMPACTO LÁSER 👋 Quisiera solicitar un presupuesto de limpieza láser.";
+  "Hola IMPACTO LASER 👋 Quisiera solicitar un presupuesto de limpieza laser.";
 
 /** Deep link to WhatsApp prefilled with a budget-request message. */
 export const presupuestoHref = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(

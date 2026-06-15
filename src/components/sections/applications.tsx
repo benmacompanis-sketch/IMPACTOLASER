@@ -22,7 +22,7 @@ export function Applications() {
       <SectionHeading
         eyebrow="Aplicaciones"
         title="De monumentos históricos a motores"
-        description="Una misma tecnología, infinitos escenarios. La limpieza láser se adapta al patrimonio, la arquitectura, el hogar y la industria pesada."
+        description="Una misma tecnología, infinitos escenarios. La limpieza laser se adapta al patrimonio, la arquitectura, el hogar y la industria pesada."
       />
 
       <RevealGroup
