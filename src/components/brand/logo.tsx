@@ -8,24 +8,15 @@ import { site } from "@/lib/site";
 /**
  * ─────────────────────────────────────────────────────────────────────────
  *  LOGO OFICIAL
- *  Subí el archivo ORIGINAL (con su fondo negro) a la carpeta /public.
- *  Funciona con cualquiera de estos nombres (probamos en orden):
- *     logo.png · logo.png.jpeg · logo.jpg · logo.jpeg · logo.webp
- *  Si ninguno existe, se usa el placeholder SVG (sin romperse).
+ *  La primera fuente (`/logo.jpg`) es el archivo oficial real → carga directo,
+ *  sin parpadeos de "imagen rota". Si por algo fallara, cae al placeholder SVG.
+ *  El fondo negro del JPEG se vuelve invisible sobre el fondo oscuro del sitio
+ *  mediante `mix-blend-mode: screen` (no se edita el archivo).
  *
- *  El fondo negro se vuelve invisible automáticamente sobre el fondo oscuro
- *  del sitio mediante `mix-blend-mode: screen` (no se edita el archivo).
+ *  Para reemplazarlo, subí a /public un archivo y poné su ruta primera abajo.
  * ─────────────────────────────────────────────────────────────────────────
  */
-const FULL_SOURCES = [
-  "/logo.png",
-  "/logo.png.jpeg",
-  "/logo.jpg",
-  "/logo.jpeg",
-  "/logo.webp",
-  "/logo.svg", // placeholder fallback
-];
-
+const FULL_SOURCES = ["/logo.jpg", "/logo.png.jpeg", "/logo.svg"];
 const MARK_SOURCES = ["/logo-mark.svg"];
 
 interface LogoProps {
