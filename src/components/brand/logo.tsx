@@ -1,19 +1,23 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 import { site } from "@/lib/site";
 
 /**
  * ─────────────────────────────────────────────────────────────────────────
- *  OFFICIAL LOGO SWAP
- *  These constants are the ONLY thing to change to use the delivered asset.
- *  Drop the official files into /public and update the paths below, e.g.:
- *     export const LOGO_FULL = "/logo.png";
- *     export const LOGO_MARK = "/logo.png";
- *  The current SVGs are faithful placeholders so the site ships complete.
+ *  LOGO OFICIAL
+ *  Subí el archivo ORIGINAL (con su fondo negro) a /public como `logo.png`.
+ *  El fondo negro se vuelve invisible automáticamente sobre el fondo oscuro
+ *  del sitio mediante `mix-blend-mode: screen` (no se edita el archivo).
+ *
+ *  Mientras `logo.png` no exista, se usa el placeholder SVG (sin romperse).
+ *  Si tu archivo es .jpg, nombralo igual `logo.png`.
  * ─────────────────────────────────────────────────────────────────────────
  */
-export const LOGO_FULL = "/logo.svg";
+export const LOGO_FULL = "/logo.png";
+export const LOGO_FULL_FALLBACK = "/logo.svg";
 export const LOGO_MARK = "/logo-mark.svg";
 
 interface LogoProps {
@@ -24,15 +28,25 @@ interface LogoProps {
 
 export function Logo({ variant = "mark", className, priority = false }: LogoProps) {
   const isFull = variant === "full";
+  const [src, setSrc] = useState(isFull ? LOGO_FULL : LOGO_MARK);
+
   return (
-    <Image
-      src={isFull ? LOGO_FULL : LOGO_MARK}
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
+      src={src}
+      onError={() => {
+        if (isFull && src !== LOGO_FULL_FALLBACK) setSrc(LOGO_FULL_FALLBACK);
+      }}
       alt={`${site.name} — ${site.slogan}`}
-      width={isFull ? 1280 : 1000}
-      height={isFull ? 480 : 340}
-      priority={priority}
       draggable={false}
-      className={cn("h-auto w-auto select-none", className)}
+      loading={priority ? "eager" : "lazy"}
+      decoding="async"
+      className={cn(
+        "h-auto w-auto select-none",
+        // El fondo negro del logo original desaparece sobre el oscuro del sitio.
+        isFull && "mix-blend-screen",
+        className
+      )}
     />
   );
 }
