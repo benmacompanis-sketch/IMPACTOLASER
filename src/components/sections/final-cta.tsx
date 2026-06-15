@@ -27,7 +27,7 @@ export function FinalCta() {
   }, []);
 
   return (
-    <section id="contacto" className="relative overflow-hidden py-28 sm:py-36">
+    <section id="empezar" className="relative overflow-hidden py-28 sm:py-36">
       {/* depth + energy */}
       <div className="pointer-events-none absolute inset-0 -z-[1]">
         <div className="absolute left-1/2 top-1/2 h-[40rem] w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-laser-500/20 blur-[140px] animate-pulse-glow" />

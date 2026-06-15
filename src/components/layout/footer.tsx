@@ -1,10 +1,12 @@
 "use client";
 
-import { ArrowUp, MessageCircle, Mail } from "lucide-react";
+import { ArrowUp, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
+import { socialIconMap } from "@/components/brand/social-icons";
 import { useLenis } from "@/components/providers/smooth-scroll-provider";
-import { navLinks, site, presupuestoHref } from "@/lib/site";
+import { navLinks, socials, site, presupuestoHref } from "@/lib/site";
+import { cn } from "@/lib/utils";
 
 export function Footer() {
   const lenis = useLenis();
@@ -27,7 +29,7 @@ export function Footer() {
       </div>
 
       <div className="container">
-        <div className="grid gap-12 pb-14 lg:grid-cols-[1.4fr_1fr_1fr]">
+        <div className="grid gap-12 pb-14 lg:grid-cols-[1.4fr_1fr_1.2fr]">
           {/* Brand */}
           <div>
             <Logo variant="full" className="h-16 w-auto" />
@@ -35,6 +37,36 @@ export function Footer() {
               {site.slogan}. Limpieza láser industrial de alta precisión, sin agua,
               sin químicos y sin abrasivos.
             </p>
+
+            {/* Socials */}
+            <div className="mt-6 flex items-center gap-3">
+              {socials.map((s) => {
+                const Icon = socialIconMap[s.key];
+                if (s.soon) {
+                  return (
+                    <span
+                      key={s.key}
+                      title={`${s.label} · Próximamente`}
+                      className="flex size-10 cursor-default items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.02] text-foreground/30"
+                    >
+                      <Icon className="size-[18px]" />
+                    </span>
+                  );
+                }
+                return (
+                  <a
+                    key={s.key}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${site.name} en ${s.label}`}
+                    className="group flex size-10 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.02] text-foreground/70 transition-all duration-300 hover:-translate-y-0.5 hover:border-laser-500/40 hover:bg-laser-500/10 hover:text-white hover:shadow-glow-sm"
+                  >
+                    <Icon className="size-[18px]" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
 
           {/* Nav */}
@@ -68,28 +100,40 @@ export function Footer() {
                   href={presupuestoHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-laser-200"
+                  className="group flex items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-laser-200"
                 >
                   <MessageCircle className="size-4 text-laser-300/70" />
-                  WhatsApp · Presupuesto
+                  WhatsApp · Solicitar presupuesto
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${site.phone}`}
+                  className="flex items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-laser-200"
+                >
+                  <Phone className="size-4 text-laser-300/70" />
+                  {site.phoneDisplay}
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-laser-200"
+                  className="flex items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-laser-200"
                 >
                   <Mail className="size-4 text-laser-300/70" />
                   {site.email}
                 </a>
               </li>
-              <li className="text-sm text-muted-foreground">{site.location}</li>
+              <li className="flex items-center gap-2.5 text-sm text-muted-foreground">
+                <MapPin className="size-4 text-laser-300/70" />
+                {site.location}
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] py-7 sm:flex-row">
-          <p className="text-xs text-muted-foreground">
+          <p className={cn("text-xs text-muted-foreground")}>
             © {new Date().getFullYear()} {site.name}. Todos los derechos reservados.
           </p>
           <button

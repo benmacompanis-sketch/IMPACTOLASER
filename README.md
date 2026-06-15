@@ -55,10 +55,17 @@ No hace falta tocar nada más: el componente `<Logo />` se usa en todo el sitio.
 
 Todo el contenido está centralizado para facilitar su edición:
 
-- **`src/lib/site.ts`** — marca, slogan, **WhatsApp**, email, ubicación y
-  navegación. ➜ Reemplazá `whatsapp` y `email` por los datos reales.
+- **`src/lib/site.ts`** — marca, slogan, navegación y **datos de contacto reales
+  ya cargados**: WhatsApp/teléfono, email y redes (Instagram, TikTok, YouTube,
+  Facebook). Editá acá si cambia algún dato.
 - **`src/lib/data.ts`** — beneficios, qué removemos, superficies, aplicaciones,
   comparativa, estadísticas, proceso, testimonios y FAQ.
+
+### WhatsApp como CTA principal
+
+El número está conectado en **4 puntos**: botón flotante permanente, CTA del
+Hero, CTA intermedio y la sección de contacto final. Todos apuntan al mismo
+número con un mensaje de presupuesto pre-cargado (`presupuestoHref` en `site.ts`).
 
 ---
 

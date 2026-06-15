@@ -14,6 +14,9 @@ import { Process } from "@/components/sections/process";
 import { Testimonials } from "@/components/sections/testimonials";
 import { Faq } from "@/components/sections/faq";
 import { FinalCta } from "@/components/sections/final-cta";
+import { Contact } from "@/components/sections/contact";
+import { WhatsappCtaBand } from "@/components/sections/whatsapp-cta-band";
+import { WhatsappFloat } from "@/components/shared/whatsapp-float";
 
 export default function Home() {
   return (
@@ -35,15 +38,19 @@ export default function Home() {
         <WhatWeRemove />
         <Surfaces />
         <Applications />
+        <WhatsappCtaBand />
         <Comparison />
         <Stats />
         <Process />
         <Testimonials />
         <Faq />
         <FinalCta />
+        <Contact />
       </main>
 
       <Footer />
+
+      <WhatsappFloat />
     </>
   );
 }
