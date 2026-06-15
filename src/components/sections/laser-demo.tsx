@@ -167,11 +167,11 @@ export function LaserDemo() {
             }}
           />
           <div className="absolute -top-2.5 left-0 size-6 -translate-x-1/2 rounded-md border border-laser-300/60 bg-ink-700 shadow-glow" />
+          {/* contained, symmetric glow centered on the grip */}
           <div
-            className="absolute left-0 top-1/2 size-20 -translate-x-1/2 -translate-y-1/2 rounded-full"
+            className="absolute left-0 top-1/2 size-14 -translate-x-1/2 -translate-y-1/2 rounded-full"
             style={{
-              background:
-                "radial-gradient(circle, rgba(255,255,255,0.85), rgba(47,139,255,0.45) 35%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(109,171,255,0.55), transparent 65%)",
             }}
           />
           {[0, 0.6, 1.2].map((d) => (
@@ -196,10 +196,15 @@ export function LaserDemo() {
             />
           ))}
 
-          {/* draggable grip handle */}
-          <div className="absolute left-0 top-1/2 flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/30 bg-white/10 text-white shadow-glow backdrop-blur-md">
+          {/* draggable grip handle — glow attached to it so it stays centered */}
+          <div
+            className="absolute left-0 top-1/2 flex size-11 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/40 bg-white/15 text-white backdrop-blur-md"
+            style={{
+              boxShadow:
+                "0 0 22px 5px rgba(47,139,255,0.6), 0 0 48px 14px rgba(47,139,255,0.22)",
+            }}
+          >
             <MoveHorizontal className="size-5" />
-            <span className="absolute inset-0 animate-pulse-glow rounded-full bg-laser-500/20 blur-sm" />
           </div>
         </motion.div>
 
