@@ -141,7 +141,7 @@ export function Intro({ onComplete }: { onComplete?: () => void }) {
 
       {/* progressive logo */}
       <div ref={logoRef} className="relative z-10 px-8">
-        <Logo variant="full" priority className="w-[min(34rem,82vw)]" />
+        <Logo variant="full" priority className="w-[min(44rem,92vw)]" />
       </div>
 
       {/* flash */}

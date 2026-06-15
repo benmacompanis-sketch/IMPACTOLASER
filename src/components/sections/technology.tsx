@@ -31,9 +31,11 @@ export function Technology() {
         <div className="glow-border rounded-3xl p-1.5">
           <LaserDemo />
         </div>
-        <p className="mt-4 text-center text-sm text-muted-foreground">
-          El láser actúa solo sobre lo que está <span className="text-laser-200">por encima</span> del
-          material — la superficie original permanece intacta.
+        <p className="mx-auto mt-5 max-w-2xl text-center text-sm text-muted-foreground">
+          <span className="text-foreground">Deslizá el láser de lado a lado.</span> A la{" "}
+          <span className="text-laser-200">izquierda</span> queda la superficie original recuperada;
+          a la <span className="text-amber-200/90">derecha</span>, la suciedad antes de limpiar. El
+          láser solo elimina lo que está por encima del material, sin tocarlo.
         </p>
       </Reveal>
 

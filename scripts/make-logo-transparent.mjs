@@ -30,7 +30,12 @@ for (let i = 0; i < data.length; i += 4) {
 await sharp(data, {
   raw: { width: info.width, height: info.height, channels: 4 },
 })
+  // recorta el borde transparente sobrante → el logo aprovecha todo el alto
+  .trim({ threshold: 12 })
   .png()
   .toFile(OUTPUT);
 
-console.log(`✓ Generado ${OUTPUT} (${info.width}x${info.height}) desde ${INPUT}`);
+const meta = await sharp(OUTPUT).metadata();
+console.log(
+  `✓ Generado ${OUTPUT} (${meta.width}x${meta.height}, recortado) desde ${INPUT}`
+);

@@ -19,7 +19,7 @@ import { site } from "@/lib/site";
  * ─────────────────────────────────────────────────────────────────────────
  */
 const FULL_SOURCES = ["/logo-transparent.png", "/logo.svg"];
-const MARK_SOURCES = ["/logo-mark.svg"];
+const MARK_SOURCES = ["/logo-transparent.png", "/logo-mark.svg"];
 
 interface LogoProps {
   variant?: "full" | "mark";

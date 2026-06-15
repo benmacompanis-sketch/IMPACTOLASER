@@ -32,7 +32,7 @@ export function Footer() {
         <div className="grid gap-12 pb-14 lg:grid-cols-[1.4fr_1fr_1.2fr]">
           {/* Brand */}
           <div>
-            <Logo variant="full" className="h-16 w-auto" />
+            <Logo variant="full" className="h-20 w-auto" />
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
               {site.slogan}. Limpieza láser industrial de alta precisión, sin agua,
               sin químicos y sin abrasivos.
