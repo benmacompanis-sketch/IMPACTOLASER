@@ -1,20 +1,66 @@
 "use client";
 
 import { useRef } from "react";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, ArrowRight, ChevronDown } from "lucide-react";
 
-import { TextReveal } from "@/components/effects/text-reveal";
-import { Reveal } from "@/components/effects/reveal";
 import { CtaButton } from "@/components/shared/cta-button";
 import { useLenis } from "@/components/providers/smooth-scroll-provider";
 import { presupuestoHref } from "@/lib/site";
 
 const subPills = ["Sin agua", "Sin químicos", "Sin abrasivos", "Sin dañar la superficie"];
+const line1 = "LIMPIEZA LASER".split(" ");
+const line2 = "DE ALTA PRECISIÓN".split(" ");
 
-export function Hero() {
+const container: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.1, delayChildren: 0.05 } },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 24, filter: "blur(8px)" },
+  show: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] },
+  },
+};
+
+const lineWrap: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.07 } },
+};
+
+const wordV: Variants = {
+  hidden: { y: "115%", opacity: 0 },
+  show: { y: "0%", opacity: 1, transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] } },
+};
+
+const dividerV: Variants = {
+  hidden: { scaleX: 0, opacity: 0 },
+  show: { scaleX: 1, opacity: 1, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } },
+};
+
+function Words({ words, gradient }: { words: string[]; gradient: string }) {
+  return (
+    <motion.span variants={lineWrap} className="block">
+      {words.map((w, i) => (
+        <span key={i} className="inline-block overflow-hidden py-[0.08em] align-bottom">
+          <motion.span variants={wordV} className={`inline-block ${gradient}`}>
+            {w}
+          </motion.span>
+          {i < words.length - 1 ? " " : ""}
+        </span>
+      ))}
+    </motion.span>
+  );
+}
+
+export function Hero({ started = true }: { started?: boolean }) {
   const ref = useRef<HTMLElement>(null);
   const lenis = useLenis();
+  const animateState = started ? "show" : "hidden";
 
   const handleSpotlight = (e: React.MouseEvent) => {
     const el = ref.current;
@@ -27,7 +73,9 @@ export function Hero() {
   const scrollTo = (href: string) => {
     const el = document.querySelector(href);
     if (!el) return;
-    lenis ? lenis.scrollTo(el as HTMLElement, { offset: -80 }) : el.scrollIntoView({ behavior: "smooth" });
+    lenis
+      ? lenis.scrollTo(el as HTMLElement, { offset: -80 })
+      : el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
@@ -42,60 +90,48 @@ export function Hero() {
       <div className="pointer-events-none absolute left-1/2 top-1/3 -z-[1] h-[42rem] w-[42rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-laser-500/10 blur-[120px] animate-pulse-glow" />
       <div className="pointer-events-none absolute right-[12%] top-[22%] -z-[1] h-64 w-64 rounded-full bg-laser-400/10 blur-[90px]" />
 
-      <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center">
+      <motion.div
+        className="relative mx-auto flex max-w-5xl flex-col items-center text-center"
+        variants={container}
+        initial="hidden"
+        animate={animateState}
+      >
         {/* Eyebrow */}
-        <Reveal y={16} blur={false}>
-          <span className="eyebrow mb-8">
-            <span className="size-1.5 animate-pulse rounded-full bg-laser-400 shadow-glow-sm" />
-            Tecnología de limpieza laser industrial
-          </span>
-        </Reveal>
+        <motion.span variants={fadeUp} className="eyebrow mb-8">
+          <span className="size-1.5 animate-pulse rounded-full bg-laser-400 shadow-glow-sm" />
+          Tecnología de limpieza laser industrial
+        </motion.span>
 
         {/* Headline */}
         <h1 className="font-display text-[clamp(2.6rem,8vw,6.2rem)] font-bold leading-[0.98] tracking-tight">
-          <span className="block">
-            <TextReveal text="LIMPIEZA LASER" className="text-gradient" />
-          </span>
-          <span className="block">
-            <TextReveal text="DE ALTA PRECISIÓN" delay={0.25} className="text-gradient-laser" />
-          </span>
+          <Words words={line1} gradient="text-gradient" />
+          <Words words={line2} gradient="text-gradient-laser" />
         </h1>
 
         {/* Animated laser divider */}
         <motion.div
-          initial={{ scaleX: 0, opacity: 0 }}
-          animate={{ scaleX: 1, opacity: 1 }}
-          transition={{ duration: 1.1, delay: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          variants={dividerV}
           className="laser-line my-8 h-px w-[min(34rem,80%)] origin-center bg-gradient-to-r from-transparent via-laser-400/70 to-transparent"
         />
 
         {/* Subtitle pills */}
-        <Reveal delay={0.5}>
-          <p className="sr-only">
-            Sin agua. Sin químicos. Sin abrasivos. Sin dañar la superficie original.
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-2.5">
-            {subPills.map((pill, i) => (
-              <motion.span
-                key={pill}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7 + i * 0.08, duration: 0.6 }}
-                className="glass rounded-full px-4 py-2 text-sm font-medium text-foreground/80"
-              >
-                {pill}
-              </motion.span>
-            ))}
-          </div>
-        </Reveal>
+        <p className="sr-only">
+          Sin agua. Sin químicos. Sin abrasivos. Sin dañar la superficie original.
+        </p>
+        <motion.div variants={lineWrap} className="flex flex-wrap items-center justify-center gap-2.5">
+          {subPills.map((pill) => (
+            <motion.span
+              key={pill}
+              variants={fadeUp}
+              className="glass rounded-full px-4 py-2 text-sm font-medium text-foreground/80"
+            >
+              {pill}
+            </motion.span>
+          ))}
+        </motion.div>
 
         {/* CTAs */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="mt-11 flex flex-col items-center gap-4 sm:flex-row"
-        >
+        <motion.div variants={fadeUp} className="mt-11 flex flex-col items-center gap-4 sm:flex-row">
           <CtaButton href={presupuestoHref} size="lg">
             Solicitar presupuesto
             <ArrowUpRight className="size-5" />
@@ -111,14 +147,17 @@ export function Hero() {
             <ArrowRight className="size-5" />
           </CtaButton>
         </motion.div>
-      </div>
+      </motion.div>
 
       {/* Scroll indicator */}
       <motion.button
         onClick={() => scrollTo("#tecnologia")}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 1 }}
+        initial="hidden"
+        animate={animateState}
+        variants={{
+          hidden: { opacity: 0 },
+          show: { opacity: 1, transition: { delay: 1.1, duration: 1 } },
+        }}
         className="group absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] text-foreground/40 transition-colors hover:text-foreground/80"
         aria-label="Desplazarse a tecnología"
       >

@@ -1,5 +1,7 @@
 "use client";
 
+import { useCallback, useState } from "react";
+
 import { Intro } from "@/components/sections/intro";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
@@ -19,9 +21,12 @@ import { WhatsappCtaBand } from "@/components/sections/whatsapp-cta-band";
 import { WhatsappFloat } from "@/components/shared/whatsapp-float";
 
 export default function Home() {
+  const [started, setStarted] = useState(false);
+  const handleStart = useCallback(() => setStarted(true), []);
+
   return (
     <>
-      <Intro />
+      <Intro onComplete={handleStart} />
 
       <a
         href="#inicio"
@@ -33,7 +38,7 @@ export default function Home() {
       <Navbar />
 
       <main className="relative">
-        <Hero />
+        <Hero started={started} />
         <Technology />
         <WhatWeRemove />
         <Surfaces />

@@ -34,21 +34,24 @@ export function Intro({ onComplete }: { onComplete?: () => void }) {
   }, []);
 
   useIsomorphicLayoutEffect(() => {
-    const finish = () => {
+    // reveal the site (start its entrance) as the intro begins to dissolve
+    const revealSite = () => onComplete?.();
+    // unmount the overlay once it has fully faded
+    const unmount = () => {
       document.body.style.overflow = "";
       setHidden(true);
-      onComplete?.();
     };
 
     if (reducedMotion) {
-      finish();
+      revealSite();
+      unmount();
       return;
     }
 
     document.body.style.overflow = "hidden";
 
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ onComplete: finish });
+      const tl = gsap.timeline({ onComplete: unmount });
 
       gsap.set(logoRef.current, { autoAlpha: 0, scale: 0.94, clipPath: "inset(0 50% 0 50%)" });
       gsap.set(beamRef.current, { scaleX: 0, transformOrigin: "left center" });
@@ -84,7 +87,9 @@ export function Intro({ onComplete }: { onComplete?: () => void }) {
           rootRef.current,
           { autoAlpha: 0, duration: 0.7, ease: "power2.inOut" },
           2.35
-        );
+        )
+        // trigger the hero's entrance as the overlay starts dissolving
+        .add(revealSite, 2.2);
     }, rootRef);
 
     return () => {
