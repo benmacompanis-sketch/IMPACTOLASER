@@ -148,7 +148,7 @@ export function LaserDemo() {
           )}
           <div className="absolute bottom-5 right-5">
             <span className="rounded-full border border-amber-700/40 bg-amber-950/50 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-amber-200/90 backdrop-blur-sm">
-              Óxido · Pintura · Suciedad
+              Superficie oxidada
             </span>
           </div>
         </motion.div>
@@ -174,10 +174,12 @@ export function LaserDemo() {
               background: "radial-gradient(circle, rgba(109,171,255,0.55), transparent 65%)",
             }}
           />
+          {/* rings & sparks center via negative margins (Framer's animated
+              transform would override translate-based centering) */}
           {[0, 0.6, 1.2].map((d) => (
             <motion.div
               key={d}
-              className="absolute left-0 top-1/2 size-7 -translate-x-1/2 -translate-y-1/2 rounded-full border border-laser-200/70"
+              className="absolute left-0 top-1/2 -ml-3.5 -mt-3.5 size-7 rounded-full border border-laser-200/70"
               animate={{ scale: [0.4, 2.8], opacity: [0.7, 0] }}
               transition={{ duration: 1.6, repeat: Infinity, delay: d, ease: "easeOut" }}
             />
@@ -185,7 +187,7 @@ export function LaserDemo() {
           {[...Array(7)].map((_, i) => (
             <motion.span
               key={i}
-              className="absolute left-0 top-1/2 size-1 -translate-x-1/2 -translate-y-1/2 rounded-full bg-laser-100"
+              className="absolute left-0 top-1/2 -ml-0.5 -mt-0.5 size-1 rounded-full bg-laser-100"
               animate={{
                 x: [0, (i % 2 ? 1 : -1) * (14 + i * 4)],
                 y: [0, (i % 3 ? -1 : 1) * (10 + i * 5)],
