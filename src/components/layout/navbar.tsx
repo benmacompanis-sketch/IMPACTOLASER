@@ -65,7 +65,7 @@ export function Navbar() {
             className="group flex items-center gap-2"
             aria-label={`${"IMPACTO LÁSER"} — inicio`}
           >
-            <Logo variant="mark" className="h-9 w-auto sm:h-11" priority />
+            <Logo variant="mark" className="h-9 w-auto -translate-y-1 sm:h-11" priority />
           </a>
 
           {/* Desktop links */}

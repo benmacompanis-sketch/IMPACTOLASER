@@ -32,7 +32,7 @@ export function Technology() {
           <LaserDemo />
         </div>
         <p className="mx-auto mt-5 max-w-2xl text-center text-sm text-muted-foreground">
-          <span className="text-foreground">Deslizá el láser de lado a lado.</span> A la{" "}
+          <span className="text-foreground">Arrastrá el láser de lado a lado.</span> A la{" "}
           <span className="text-laser-200">izquierda</span> queda la superficie original recuperada;
           a la <span className="text-amber-200/90">derecha</span>, la suciedad antes de limpiar. El
           láser solo elimina lo que está por encima del material, sin tocarlo.
