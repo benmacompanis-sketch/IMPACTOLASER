@@ -58,11 +58,11 @@ export function FinalCta() {
         </Reveal>
 
         <h2 className="mx-auto max-w-4xl font-display text-[clamp(2.2rem,6vw,4.5rem)] font-bold leading-[1.02] tracking-tight">
-          <span className="text-gradient">
-            <TextReveal text="¿LISTO PARA RECUPERAR" />
+          <span>
+            <TextReveal text="¿LISTO PARA RECUPERAR" className="text-gradient" />
           </span>{" "}
-          <span className="text-gradient-laser">
-            <TextReveal text="CUALQUIER SUPERFICIE?" delay={0.2} />
+          <span>
+            <TextReveal text="CUALQUIER SUPERFICIE?" delay={0.2} className="text-gradient-laser" />
           </span>
         </h2>
 

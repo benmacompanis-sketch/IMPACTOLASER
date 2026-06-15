@@ -85,11 +85,11 @@ export function Contact() {
             </span>
           </Reveal>
           <h2 className="font-display text-[clamp(2rem,5vw,3.6rem)] font-bold leading-[1.04] tracking-tight">
-            <span className="text-gradient">
-              <TextReveal text="¿TENÉS UNA SUPERFICIE" />
+            <span>
+              <TextReveal text="¿TENÉS UNA SUPERFICIE" className="text-gradient" />
             </span>{" "}
-            <span className="text-gradient-laser">
-              <TextReveal text="QUE NECESITA RECUPERARSE?" delay={0.2} />
+            <span>
+              <TextReveal text="QUE NECESITA RECUPERARSE?" delay={0.2} className="text-gradient-laser" />
             </span>
           </h2>
           <Reveal delay={0.2}>

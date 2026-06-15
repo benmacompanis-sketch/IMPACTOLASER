@@ -47,7 +47,7 @@ export function TextReveal({
 
   return (
     <motion.span
-      className={cn("inline-block", className)}
+      className="inline-block"
       variants={container}
       initial="hidden"
       whileInView="visible"
@@ -58,7 +58,9 @@ export function TextReveal({
         <Fragment key={i}>
           <span className="inline-block overflow-hidden py-[0.08em] align-bottom">
             <motion.span
-              className="inline-block will-change-transform"
+              // The gradient/visual class is applied here — on the SAME element
+              // that is transformed — so background-clip:text stays valid.
+              className={cn("inline-block will-change-transform", className)}
               style={{ transformOrigin: "bottom" }}
               variants={word}
               aria-hidden

@@ -53,11 +53,11 @@ export function Hero() {
 
         {/* Headline */}
         <h1 className="font-display text-[clamp(2.6rem,8vw,6.2rem)] font-bold leading-[0.98] tracking-tight">
-          <span className="block text-gradient">
-            <TextReveal text="LIMPIEZA LÁSER" />
+          <span className="block">
+            <TextReveal text="LIMPIEZA LÁSER" className="text-gradient" />
           </span>
-          <span className="block text-gradient-laser">
-            <TextReveal text="DE ALTA PRECISIÓN" delay={0.25} />
+          <span className="block">
+            <TextReveal text="DE ALTA PRECISIÓN" delay={0.25} className="text-gradient-laser" />
           </span>
         </h1>
 

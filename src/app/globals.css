@@ -101,20 +101,28 @@
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  /* Gradient text */
+  /* Gradient text — solid fallback first, clipped gradient only where supported.
+     This guarantees titles are never invisible even if background-clip:text
+     fails or the text sits inside an animated (transformed) layer. */
   .text-gradient {
+    color: #eaf3ff;
     background: linear-gradient(180deg, #ffffff 0%, #cfe4ff 55%, #6dabff 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
   }
 
   .text-gradient-laser {
+    color: #cfe4ff;
     background: linear-gradient(110deg, #6dabff 0%, #3d8eff 45%, #ffffff 60%, #2f8bff 100%);
     background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+  }
+
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .text-gradient,
+    .text-gradient-laser {
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
   }
 
   /* Hairline gradient divider */
