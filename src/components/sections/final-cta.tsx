@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin } from "lucide-react";
 
 import { TextReveal } from "@/components/effects/text-reveal";
 import { Reveal } from "@/components/effects/reveal";
 import { CtaButton } from "@/components/shared/cta-button";
+import { WhatsappIcon } from "@/components/brand/social-icons";
 import { site, presupuestoHref } from "@/lib/site";
 
 type Dot = { x: number; y: number; size: number; dur: number; delay: number };
@@ -76,8 +77,8 @@ export function FinalCta() {
         <Reveal delay={0.3}>
           <div className="mt-11 flex flex-col items-center gap-4 sm:flex-row">
             <CtaButton href={presupuestoHref} size="lg">
-              Solicitar presupuesto
-              <ArrowUpRight className="size-5" />
+              <WhatsappIcon className="size-5" />
+              Escribinos
             </CtaButton>
             <CtaButton
               href={`tel:${site.phone}`}
