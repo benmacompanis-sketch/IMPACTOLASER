@@ -1,19 +1,23 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
+import { PerformanceMonitor } from "@react-three/drei";
 
 import { ParticleField } from "./particle-field";
 import { usePrefersReducedMotion, useMediaQuery } from "@/hooks/use-media-query";
 
 /**
- * Fixed, full-viewport 3D backdrop that sits behind all content.
+ * Fixed, full-viewport 3D backdrop behind all content.
  * - Reduced-motion users get a calm static gradient (no WebGL).
- * - Mobile renders a lighter particle budget.
+ * - PerformanceMonitor measures real FPS and auto-scales the render resolution
+ *   down on slow devices (and back up when there's headroom) — keeps it fluid.
  */
 export function SceneBackground() {
   const reducedMotion = usePrefersReducedMotion();
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const maxDpr = isMobile ? 1.2 : 1.5;
+  const [dpr, setDpr] = useState(maxDpr);
 
   if (reducedMotion) {
     return (
@@ -32,15 +36,18 @@ export function SceneBackground() {
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
       <Canvas
         camera={{ position: [0, 0, 11], fov: 60 }}
-        dpr={[1, isMobile ? 1.2 : 1.5]}
-        gl={{
-          antialias: true,
-          alpha: true,
-          powerPreference: "high-performance",
-        }}
+        dpr={dpr}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         style={{ background: "transparent" }}
       >
         <fog attach="fog" args={["#04060d", 9, 22]} />
+        {/* Auto quality scaling based on measured frame rate. */}
+        <PerformanceMonitor
+          flipflops={3}
+          onIncline={() => setDpr(maxDpr)}
+          onDecline={() => setDpr(1)}
+          onFallback={() => setDpr(isMobile ? 0.75 : 0.9)}
+        />
         <Suspense fallback={null}>
           <ParticleField quality={isMobile ? "low" : "high"} />
         </Suspense>
