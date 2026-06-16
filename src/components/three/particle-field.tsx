@@ -303,8 +303,8 @@ function Rig({
 }
 
 export function ParticleField({ quality = "high" }: { quality?: "high" | "low" }) {
-  const particleCount = quality === "high" ? 1300 : 500;
-  const nodeCount = quality === "high" ? 80 : 42;
+  const particleCount = quality === "high" ? 1000 : 380;
+  const nodeCount = quality === "high" ? 70 : 38;
 
   const mouseNdc = useWindowMouse();
   const mouseLocal = useRef(new THREE.Vector3().copy(FAR_AWAY));

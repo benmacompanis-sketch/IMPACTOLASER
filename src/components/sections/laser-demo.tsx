@@ -36,8 +36,10 @@ export function LaserDemo() {
   const grimeClip = useMotionTemplate`inset(0 0 0 ${clean}%)`;
   const edge = useMotionTemplate`${clean}%`;
 
-  // Detect optional before/after photos.
+  // Detect optional before/after photos — deferred until the demo is near the
+  // viewport so the ~500KB of images don't compete with the initial load.
   useEffect(() => {
+    if (!inView) return;
     let mounted = true;
     const load = (src: string) =>
       new Promise<boolean>((resolve) => {
@@ -52,7 +54,7 @@ export function LaserDemo() {
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [inView]);
 
   // Auto demo: dirty → fully clean → settle at half.
   useEffect(() => {

@@ -32,7 +32,7 @@ export function SceneBackground() {
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
       <Canvas
         camera={{ position: [0, 0, 11], fov: 60 }}
-        dpr={[1, isMobile ? 1.3 : 1.7]}
+        dpr={[1, isMobile ? 1.2 : 1.5]}
         gl={{
           antialias: true,
           alpha: true,
