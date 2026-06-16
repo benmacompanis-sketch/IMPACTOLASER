@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { Fragment, useRef } from "react";
 import { motion, type Variants } from "framer-motion";
 import { ArrowUpRight, ArrowRight, ChevronDown } from "lucide-react";
 
@@ -46,12 +46,14 @@ function Words({ words, gradient }: { words: string[]; gradient: string }) {
   return (
     <motion.span variants={lineWrap} className="block">
       {words.map((w, i) => (
-        <span key={i} className="inline-block overflow-hidden py-[0.08em] align-bottom">
-          <motion.span variants={wordV} className={`inline-block ${gradient}`}>
-            {w}
-          </motion.span>
+        <Fragment key={i}>
+          <span className="inline-block overflow-hidden py-[0.08em] align-bottom">
+            <motion.span variants={wordV} className={`inline-block ${gradient}`}>
+              {w}
+            </motion.span>
+          </span>
           {i < words.length - 1 ? " " : ""}
-        </span>
+        </Fragment>
       ))}
     </motion.span>
   );
