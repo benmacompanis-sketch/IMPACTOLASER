@@ -68,8 +68,8 @@ export function CustomCursor() {
       {/* Glow ring */}
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[9999] -translate-x-1/2 -translate-y-1/2 rounded-full mix-blend-screen"
-        style={{ x: ringX, y: ringY }}
+        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full mix-blend-screen"
+        style={{ x: ringX, y: ringY, translate: "-50% -50%" }}
         animate={{
           width: hovering ? 64 : 34,
           height: hovering ? 64 : 34,
@@ -92,8 +92,8 @@ export function CustomCursor() {
       {/* Inner dot */}
       <motion.div
         aria-hidden
-        className="pointer-events-none fixed left-0 top-0 z-[9999] -translate-x-1/2 -translate-y-1/2 rounded-full bg-laser-200 mix-blend-screen"
-        style={{ x, y }}
+        className="pointer-events-none fixed left-0 top-0 z-[9999] rounded-full bg-laser-200 mix-blend-screen"
+        style={{ x, y, translate: "-50% -50%" }}
         animate={{
           width: pressed ? 6 : hovering ? 5 : 7,
           height: pressed ? 6 : hovering ? 5 : 7,

@@ -51,6 +51,8 @@
     background-color: #04060d;
     overflow-x: hidden;
     font-feature-settings: "ss01", "cv01", "cv03";
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* legacy Edge */
   }
 
   /* Custom selection */
@@ -59,21 +61,12 @@
     color: #ffffff;
   }
 
-  /* Slim, on-brand scrollbar */
+  /* Hidden scrollbar — Lenis + the top progress bar provide scroll feedback,
+     and a native scrollbar can't be drawn under the custom cursor. */
   ::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-  }
-  ::-webkit-scrollbar-track {
-    background: #04060d;
-  }
-  ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #1f6fe6, #103f8c);
-    border-radius: 999px;
-    border: 2px solid #04060d;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #3d8eff, #1656bf);
+    width: 0;
+    height: 0;
+    display: none;
   }
 
   /* Hide native cursor on devices that support a fine pointer (custom cursor takes over) */
