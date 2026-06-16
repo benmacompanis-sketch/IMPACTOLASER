@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowUpRight, MessageCircle, Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Phone, Mail, MapPin } from "lucide-react";
 
 import { TextReveal } from "@/components/effects/text-reveal";
 import { Reveal } from "@/components/effects/reveal";
@@ -80,13 +80,14 @@ export function FinalCta() {
               <ArrowUpRight className="size-5" />
             </CtaButton>
             <CtaButton
-              href={`https://wa.me/${site.whatsapp}`}
+              href={`tel:${site.phone}`}
               variant="glass"
               size="lg"
               sweep={false}
+              external={false}
             >
-              <MessageCircle className="size-5" />
-              Escribinos por WhatsApp
+              <Phone className="size-5" />
+              Llamar ahora
             </CtaButton>
           </div>
         </Reveal>
