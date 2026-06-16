@@ -128,6 +128,10 @@ const config: Config = {
           "0%, 100%": { backgroundPosition: "0% 50%" },
           "50%": { backgroundPosition: "100% 50%" },
         },
+        marquee: {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(-50%)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.3s ease-out",
@@ -137,6 +141,7 @@ const config: Config = {
         float: "float 6s ease-in-out infinite",
         "spin-slow": "spin-slow 18s linear infinite",
         "border-flow": "border-flow 6s ease infinite",
+        marquee: "marquee 40s linear infinite",
       },
     },
   },
