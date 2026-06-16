@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUp, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
+import { ArrowUp, ArrowUpRight, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 import { socialIconMap } from "@/components/brand/social-icons";
@@ -146,6 +146,34 @@ export function Footer() {
             </span>
           </button>
         </div>
+
+        {/* Agency credit — Desarrollado por I.D.E.A Code */}
+        <a
+          href="https://idea-code.vercel.app/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Desarrollado por I.D.E.A Code — Innovación Digital para Empresas y Agencias"
+          className="group flex flex-col items-center gap-1.5 border-t border-white/[0.06] py-6 text-center transition-colors duration-300 hover:bg-white/[0.02]"
+        >
+          <span className="flex items-center gap-2.5">
+            <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground/50">
+              Desarrollado por
+            </span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/idea-code-logo.svg"
+              alt=""
+              className="h-6 w-auto transition-transform duration-300 group-hover:scale-110"
+            />
+            <span className="font-display text-base font-bold tracking-tight text-white">
+              I.D.E.A <span className="text-[#6aae7e]">Code</span>
+            </span>
+            <ArrowUpRight className="size-3.5 text-muted-foreground/40 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-[#6aae7e]" />
+          </span>
+          <span className="text-[11px] text-muted-foreground/50">
+            Innovación Digital para Empresas y Agencias
+          </span>
+        </a>
       </div>
     </footer>
   );
