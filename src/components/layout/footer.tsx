@@ -153,25 +153,19 @@ export function Footer() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Desarrollado por I.D.E.A Code — Innovación Digital para Empresas y Agencias"
-          className="group flex flex-col items-center gap-1.5 border-t border-white/[0.06] py-6 text-center transition-colors duration-300 hover:bg-white/[0.02]"
+          className="group flex flex-col items-center gap-2.5 border-t border-white/[0.06] py-7 text-center transition-colors duration-300 hover:bg-white/[0.02]"
         >
-          <span className="flex items-center gap-2.5">
-            <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground/50">
-              Desarrollado por
-            </span>
+          <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground/50">
+            Desarrollado por
+          </span>
+          <span className="flex items-center gap-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/idea-code-logo.svg"
-              alt=""
-              className="h-6 w-auto transition-transform duration-300 group-hover:scale-110"
+              src="/idea-code-logo-dark.png"
+              alt="I.D.E.A Code — Innovación Digital para Empresas y Agencias"
+              className="h-11 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-14"
             />
-            <span className="font-display text-base font-bold tracking-tight text-white">
-              I.D.E.A <span className="text-[#6aae7e]">Code</span>
-            </span>
-            <ArrowUpRight className="size-3.5 text-muted-foreground/40 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-[#6aae7e]" />
-          </span>
-          <span className="text-[11px] text-muted-foreground/50">
-            Innovación Digital para Empresas y Agencias
+            <ArrowUpRight className="size-4 shrink-0 text-muted-foreground/40 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-[#6aae7e]" />
           </span>
         </a>
       </div>
