@@ -35,7 +35,7 @@ export default function Home() {
         Saltar al contenido
       </a>
 
-      <Navbar />
+      <Navbar started={started} />
 
       <main className="relative">
         <Hero started={started} />
@@ -55,7 +55,7 @@ export default function Home() {
 
       <Footer />
 
-      <WhatsappFloat />
+      <WhatsappFloat active={started} />
     </>
   );
 }

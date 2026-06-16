@@ -1,6 +1,5 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 import { Magnetic } from "@/components/effects/magnetic";
@@ -9,25 +8,18 @@ import { presupuestoHref, site } from "@/lib/site";
 
 /**
  * Persistent floating WhatsApp CTA — the primary conversion action of the
- * whole site. Pulses to draw the eye and expands a label on hover.
+ * whole site. Pops in (coordinated with the intro lift via `active`) and
+ * expands a label on hover.
  */
-export function WhatsappFloat() {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    // Reveal once the cinematic intro has lifted.
-    const t = setTimeout(() => setShow(true), 1200);
-    return () => clearTimeout(t);
-  }, []);
-
+export function WhatsappFloat({ active = false }: { active?: boolean }) {
   return (
     <AnimatePresence>
-      {show && (
+      {active && (
         <motion.div
           initial={{ opacity: 0, scale: 0.6, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.6 }}
-          transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.5 }}
           className="fixed bottom-5 right-5 z-30 sm:bottom-6 sm:right-6"
         >
           <Magnetic strength={0.3}>

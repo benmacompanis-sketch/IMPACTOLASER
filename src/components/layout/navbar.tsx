@@ -11,7 +11,7 @@ import { useLenis } from "@/components/providers/smooth-scroll-provider";
 import { navLinks, presupuestoHref } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
-export function Navbar() {
+export function Navbar({ started = true }: { started?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const lenis = useLenis();
@@ -46,8 +46,8 @@ export function Navbar() {
     <>
       <motion.header
         initial={{ y: -90, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        animate={started ? { y: 0, opacity: 1 } : { y: -90, opacity: 0 }}
+        transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
         className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 sm:pt-4"
       >
         <nav
