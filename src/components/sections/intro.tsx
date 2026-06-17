@@ -23,7 +23,8 @@ export function Intro({ onComplete }: { onComplete?: () => void }) {
 
   // Generate particles client-side to avoid hydration mismatch.
   useEffect(() => {
-    const list: Particle[] = Array.from({ length: 46 }, () => ({
+    const count = window.matchMedia("(max-width: 768px)").matches ? 14 : 46;
+    const list: Particle[] = Array.from({ length: count }, () => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
       size: Math.random() * 2.5 + 0.8,

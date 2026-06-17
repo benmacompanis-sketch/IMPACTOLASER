@@ -24,6 +24,15 @@ export function SmoothScrollProvider({ children }: { children: React.ReactNode }
   useEffect(() => {
     if (reducedMotion) return;
 
+    // Native scroll on mobile/touch: Lenis' continuous RAF loop is main-thread
+    // overhead that janks the start and the menu on phones. The navbar/footer
+    // anchor links fall back to native smooth scroll when Lenis is null.
+    const isTouch =
+      window.matchMedia("(max-width: 768px)").matches ||
+      window.matchMedia("(pointer: coarse)").matches ||
+      !window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    if (isTouch) return;
+
     gsap.registerPlugin(ScrollTrigger);
 
     const lenisInstance = new Lenis({

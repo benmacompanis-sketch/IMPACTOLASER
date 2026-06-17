@@ -19,7 +19,10 @@ export function SceneBackground() {
   const maxDpr = isMobile ? 1.2 : 1.5;
   const [dpr, setDpr] = useState(maxDpr);
 
-  if (reducedMotion) {
+  // Static gradient for reduced-motion AND mobile/touch: the live WebGL loop is
+  // too heavy for phones (it janks the intro, the start and the menu). Desktop
+  // keeps the full 3D.
+  if (reducedMotion || isMobile) {
     return (
       <div
         aria-hidden

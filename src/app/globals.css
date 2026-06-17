@@ -55,6 +55,14 @@
     -ms-overflow-style: none; /* legacy Edge */
   }
 
+  /* Remove the legacy ~300ms tap delay → buttons/links respond instantly */
+  button,
+  a,
+  [role="button"],
+  summary {
+    touch-action: manipulation;
+  }
+
   /* Custom selection */
   ::selection {
     background: rgba(47, 139, 255, 0.32);
