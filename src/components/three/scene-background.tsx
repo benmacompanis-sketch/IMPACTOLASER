@@ -99,5 +99,5 @@ export function SceneBackground() {
 
   if (mode === "static") return <StaticBackground />;
   if (mode === "css") return <CssBackground tier={tier} />;
-  return <WebglBackground />;
+  return <WebglBackground tier={tier} />;
 }

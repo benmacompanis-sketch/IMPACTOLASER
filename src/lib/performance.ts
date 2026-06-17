@@ -38,8 +38,13 @@ export function detectTier(): PerfTier {
     (mobile ? 4 : 8);
 
   if (!mobile) {
-    // Desktop: assume capable unless it's a very low-core machine.
-    return cores <= 2 ? "medium" : "high";
+    // Desktop: keep the full show by default. Only step down on machines that
+    // look genuinely weak, so normal computers are never altered.
+    // (deviceMemory is Chromium-only; it defaults to 8 elsewhere, so this stays
+    // conservative and won't downgrade Firefox/Safari on capable hardware.)
+    if (cores <= 2) return "medium";
+    if (cores <= 4 && mem <= 4) return "medium";
+    return "high";
   }
 
   // Mobile / touch

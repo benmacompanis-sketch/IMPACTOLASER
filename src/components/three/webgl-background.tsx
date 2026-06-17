@@ -5,16 +5,27 @@ import { Canvas } from "@react-three/fiber";
 import { PerformanceMonitor } from "@react-three/drei";
 
 import { ParticleField } from "./particle-field";
+import type { PerfTier } from "@/lib/performance";
 
 /**
  * Desktop WebGL backdrop. Isolated in its own module + default export so the
  * heavy three.js / r3f bundle is code-split and ONLY shipped to desktop (this
  * is dynamically imported with ssr:false from SceneBackground).
  *
- * PerformanceMonitor measures real FPS and auto-scales render resolution.
+ * Adaptive by device power: a capable machine ("high") gets the full field and
+ * the exact same settings as before; a detected-weak desktop ("medium"/"low")
+ * gets fewer particles and a lower resolution ceiling. PerformanceMonitor still
+ * auto-scales render resolution at runtime on top of that.
  */
-export default function WebglBackground() {
-  const [dpr, setDpr] = useState(1.5);
+const QUALITY = {
+  high: { quality: "high", dpr: 1.5, ceil: 1.5, declineDpr: 1 },
+  medium: { quality: "medium", dpr: 1.15, ceil: 1.25, declineDpr: 0.85 },
+  low: { quality: "low", dpr: 1, ceil: 1, declineDpr: 0.75 },
+} as const;
+
+export default function WebglBackground({ tier = "high" }: { tier?: PerfTier }) {
+  const cfg = QUALITY[tier];
+  const [dpr, setDpr] = useState<number>(cfg.dpr);
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
@@ -27,12 +38,12 @@ export default function WebglBackground() {
         <fog attach="fog" args={["#04060d", 9, 22]} />
         <PerformanceMonitor
           flipflops={3}
-          onIncline={() => setDpr(1.5)}
-          onDecline={() => setDpr(1)}
+          onIncline={() => setDpr(cfg.ceil)}
+          onDecline={() => setDpr(cfg.declineDpr)}
           onFallback={() => setDpr(0.85)}
         />
         <Suspense fallback={null}>
-          <ParticleField quality="high" />
+          <ParticleField quality={cfg.quality} />
         </Suspense>
       </Canvas>
       {/* Vignette + gradient floor to seat the particles into the page */}
