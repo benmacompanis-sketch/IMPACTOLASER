@@ -69,7 +69,7 @@ export function Surfaces() {
 
                   {/* breathing glow (centred via margin so the scale anim is clean) */}
                   <motion.div
-                    className="pointer-events-none absolute -bottom-16 left-1/2 -ml-20 size-40 rounded-full bg-laser-500/10 blur-3xl"
+                    className="glow-breathe pointer-events-none absolute -bottom-16 left-1/2 -ml-20 size-40 rounded-full bg-laser-500/10 blur-3xl"
                     animate={{ opacity: [0.45, 0.85, 0.45], scale: [1, 1.12, 1] }}
                     transition={{ duration: 5 + gi, repeat: Infinity, ease: "easeInOut" }}
                   />

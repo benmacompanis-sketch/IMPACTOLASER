@@ -105,22 +105,26 @@ export function Navbar({ started = true }: { started?: boolean }) {
         </nav>
       </motion.header>
 
-      {/* Mobile overlay menu */}
+      {/* Mobile overlay menu — solid (opaque) background instead of a
+          full-viewport backdrop-blur. Rasterising a blurred backdrop over the
+          whole screen is the single biggest cause of a laggy menu on phones;
+          a solid surface opens instantly. This overlay is lg:hidden, so the
+          desktop experience is never touched. */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.15, ease: "easeOut" }}
             className="fixed inset-0 z-40 lg:hidden"
           >
-            <div className="glass-strong absolute inset-0" />
+            <div className="absolute inset-0 bg-[#060912]" />
             <motion.nav
               className="relative flex h-full flex-col justify-center gap-2 px-8"
               initial="hidden"
               animate="visible"
-              variants={{ visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } } }}
+              variants={{ visible: { transition: { staggerChildren: 0.04, delayChildren: 0.03 } } }}
             >
               {navLinks.map((link, i) => (
                 <motion.a
@@ -128,8 +132,12 @@ export function Navbar({ started = true }: { started?: boolean }) {
                   href={link.href}
                   onClick={(e) => handleNav(e, link.href)}
                   variants={{
-                    hidden: { opacity: 0, x: -24 },
-                    visible: { opacity: 1, x: 0 },
+                    hidden: { opacity: 0, x: -20 },
+                    visible: {
+                      opacity: 1,
+                      x: 0,
+                      transition: { duration: 0.28, ease: [0.22, 1, 0.36, 1] },
+                    },
                   }}
                   className="flex items-center justify-between border-b border-white/5 py-5 font-display text-3xl font-semibold text-white/90"
                 >

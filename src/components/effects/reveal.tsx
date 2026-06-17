@@ -47,7 +47,7 @@ export function Reveal({
 
   return (
     <motion.div
-      className={cn(className)}
+      className={cn("m-show", className)}
       variants={variants}
       initial="hidden"
       whileInView="visible"
@@ -99,7 +99,7 @@ export function RevealChild({
 }) {
   return (
     <motion.div
-      className={cn(className)}
+      className={cn("m-show", className)}
       variants={{
         hidden: { opacity: 0, y, filter: "blur(8px)" },
         visible: {

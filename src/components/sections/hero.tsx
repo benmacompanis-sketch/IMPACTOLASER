@@ -48,7 +48,7 @@ function Words({ words, gradient }: { words: string[]; gradient: string }) {
       {words.map((w, i) => (
         <Fragment key={i}>
           <span className="inline-block overflow-hidden py-[0.08em] align-bottom">
-            <motion.span variants={wordV} className={`inline-block ${gradient}`}>
+            <motion.span variants={wordV} className={`m-show inline-block ${gradient}`}>
               {w}
             </motion.span>
           </span>
@@ -99,7 +99,7 @@ export function Hero({ started = true }: { started?: boolean }) {
         animate={animateState}
       >
         {/* Eyebrow */}
-        <motion.span variants={fadeUp} className="eyebrow mb-8">
+        <motion.span variants={fadeUp} className="eyebrow mb-8 m-show">
           <span className="size-1.5 animate-pulse rounded-full bg-laser-400 shadow-glow-sm" />
           Tecnología de limpieza laser industrial
         </motion.span>
@@ -113,7 +113,7 @@ export function Hero({ started = true }: { started?: boolean }) {
         {/* Animated laser divider */}
         <motion.div
           variants={dividerV}
-          className="laser-line my-8 h-px w-[min(34rem,80%)] origin-center bg-gradient-to-r from-transparent via-laser-400/70 to-transparent"
+          className="m-show laser-line my-8 h-px w-[min(34rem,80%)] origin-center bg-gradient-to-r from-transparent via-laser-400/70 to-transparent"
         />
 
         {/* Subtitle pills */}
@@ -125,7 +125,7 @@ export function Hero({ started = true }: { started?: boolean }) {
             <motion.span
               key={pill}
               variants={fadeUp}
-              className="glass rounded-full px-4 py-2 text-sm font-medium text-foreground/80"
+              className="m-show glass rounded-full px-4 py-2 text-sm font-medium text-foreground/80"
             >
               {pill}
             </motion.span>
@@ -133,7 +133,7 @@ export function Hero({ started = true }: { started?: boolean }) {
         </motion.div>
 
         {/* CTAs */}
-        <motion.div variants={fadeUp} className="mt-11 flex flex-col items-center gap-4 sm:flex-row">
+        <motion.div variants={fadeUp} className="m-show mt-11 flex flex-col items-center gap-4 sm:flex-row">
           <CtaButton href={presupuestoHref} size="lg">
             Solicitar presupuesto
             <ArrowUpRight className="size-5" />
@@ -160,7 +160,7 @@ export function Hero({ started = true }: { started?: boolean }) {
           hidden: { opacity: 0 },
           show: { opacity: 1, transition: { delay: 1.1, duration: 1 } },
         }}
-        className="group absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] text-foreground/40 transition-colors hover:text-foreground/80"
+        className="m-show-op group absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] text-foreground/40 transition-colors hover:text-foreground/80"
         aria-label="Desplazarse a tecnología"
       >
         <span>Descubrí más</span>

@@ -60,7 +60,7 @@ export function TextReveal({
             <motion.span
               // The gradient/visual class is applied here — on the SAME element
               // that is transformed — so background-clip:text stays valid.
-              className={cn("inline-block will-change-transform", className)}
+              className={cn("m-show inline-block will-change-transform", className)}
               style={{ transformOrigin: "bottom" }}
               variants={word}
               aria-hidden

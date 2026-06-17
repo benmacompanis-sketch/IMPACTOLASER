@@ -84,7 +84,7 @@ export function Comparison() {
               {/* continuous breathing glow */}
               <motion.div
                 aria-hidden
-                className="pointer-events-none absolute -bottom-20 -right-10 size-56 rounded-full bg-laser-500/20 blur-[90px]"
+                className="glow-breathe pointer-events-none absolute -bottom-20 -right-10 size-56 rounded-full bg-laser-500/20 blur-[90px]"
                 animate={{ opacity: [0.4, 0.85, 0.4], scale: [1, 1.15, 1] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
               />

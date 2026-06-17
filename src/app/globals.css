@@ -297,6 +297,33 @@
   }
 }
 
+/* Decorative "breathing" orbs animate scale on a heavy blur (driven by Framer).
+   Scaling a blurred layer re-rasterises the blur every frame — brutal on phones.
+   Freeze the transform on mobile so the blur is rasterised once; the opacity
+   pulse keeps running, so the orb still breathes (identical look, no jank).
+   These orbs are positioned with margins/insets, so neutralising transform is
+   safe (it never affects their placement). Desktop is untouched. */
+@media (max-width: 768px), (pointer: coarse) {
+  .glow-breathe {
+    transform: none !important;
+  }
+}
+
+/* MOBILE INSTANT CONTENT — render entrance-animated content visible right away
+   instead of waiting for the heavy JS bundle to hydrate and run Framer. These
+   classes are completely inert on desktop, so the desktop animations are
+   untouched. (Verified: no reveal element relies on a layout transform.) */
+@media (max-width: 768px) {
+  .m-show {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
+  .m-show-op {
+    opacity: 1 !important;
+  }
+}
+
 /* Respect reduced motion across the board */
 @media (prefers-reduced-motion: reduce) {
   *,
