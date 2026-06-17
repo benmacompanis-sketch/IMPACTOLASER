@@ -36,16 +36,16 @@ export const socials: Social[] = [
   {
     key: "instagram",
     label: "Instagram",
-    handle: "@impactolaser.arg",
-    href: "https://instagram.com/impactolaser.arg",
-    soon: false,
+    handle: "Próximamente",
+    href: "",
+    soon: true,
   },
   {
     key: "tiktok",
     label: "TikTok",
-    handle: "@impactolaser.arg",
-    href: "https://tiktok.com/@impactolaser.arg",
-    soon: false,
+    handle: "Próximamente",
+    href: "",
+    soon: true,
   },
   {
     key: "youtube",
