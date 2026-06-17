@@ -250,6 +250,53 @@
   }
 }
 
+/* ── Device-tier performance scaling ───────────────────────────────────────
+   Components keep the SAME look; we only shed expensive continuous work on
+   weaker devices (data-tier set by PerfProvider; downgrades on sustained low FPS). */
+
+/* Animating a gradient over clipped text re-rasterises the glyphs every frame —
+   too costly for phones. Freeze it on touch/small screens (keeps the gradient). */
+@media (max-width: 768px), (hover: none), (pointer: coarse) {
+  .text-gradient-laser {
+    animation: none !important;
+  }
+}
+
+/* MEDIUM: drop the heaviest repaint (text shimmer). */
+[data-tier="medium"] .text-gradient-laser {
+  animation: none;
+}
+
+/* LOW: freeze decorative continuous motion entirely (static, same colours). */
+[data-tier="low"] .text-gradient-laser,
+[data-tier="low"] .animate-pulse-glow,
+[data-tier="low"] .animate-float,
+[data-tier="low"] .animate-spin-slow,
+[data-tier="low"] .animate-bounce {
+  animation: none !important;
+}
+[data-tier="low"] .laser-line::after {
+  animation: none;
+  opacity: 0;
+}
+
+/* On touch, pulse glows by OPACITY only (no scale) so big blurred orbs don't
+   re-rasterise their blur every frame — the #1 source of mobile jank. */
+@keyframes glow-opacity {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+@media (max-width: 768px), (pointer: coarse) {
+  .animate-pulse-glow {
+    animation-name: glow-opacity !important;
+  }
+}
+
 /* Respect reduced motion across the board */
 @media (prefers-reduced-motion: reduce) {
   *,

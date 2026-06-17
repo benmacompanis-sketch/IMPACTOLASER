@@ -1,68 +1,103 @@
 "use client";
 
-import { Suspense, useState } from "react";
-import { Canvas } from "@react-three/fiber";
-import { PerformanceMonitor } from "@react-three/drei";
+import { useMemo, useState } from "react";
+import dynamic from "next/dynamic";
 
-import { ParticleField } from "./particle-field";
-import { usePrefersReducedMotion, useMediaQuery } from "@/hooks/use-media-query";
+import {
+  detectTier,
+  isTouchDevice,
+  prefersReducedMotion,
+  particleBudget,
+  type PerfTier,
+} from "@/lib/performance";
+
+// three.js only ships to desktop, where this actually renders.
+const WebglBackground = dynamic(() => import("./webgl-background"), { ssr: false });
+
+const BASE_GRADIENT =
+  "radial-gradient(75% 55% at 50% 0%, rgba(47,139,255,0.16), transparent 60%), radial-gradient(45% 35% at 82% 28%, rgba(47,139,255,0.07), transparent 60%), #04060d";
+
+function StaticBackground() {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none fixed inset-0 -z-10"
+      style={{ background: BASE_GRADIENT }}
+    />
+  );
+}
 
 /**
- * Fixed, full-viewport 3D backdrop behind all content.
- * - Reduced-motion users get a calm static gradient (no WebGL).
- * - PerformanceMonitor measures real FPS and auto-scales the render resolution
- *   down on slow devices (and back up when there's headroom) — keeps it fluid.
+ * Lightweight CSS-only animated backdrop for mobile/touch. Glow orbs drift via
+ * translate (the heavy blur is rasterised once, not per frame) and dots twinkle
+ * via opacity — all on the compositor, off the main thread. Particle count
+ * scales with the device tier; on `low` the CSS tier rules freeze the motion.
  */
-export function SceneBackground() {
-  const reducedMotion = usePrefersReducedMotion();
-  const isMobile = useMediaQuery("(max-width: 768px)");
-  const maxDpr = isMobile ? 1.2 : 1.5;
-  const [dpr, setDpr] = useState(maxDpr);
-
-  // Static gradient for reduced-motion AND mobile/touch: the live WebGL loop is
-  // too heavy for phones (it janks the intro, the start and the menu). Desktop
-  // keeps the full 3D.
-  if (reducedMotion || isMobile) {
-    return (
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-10"
-        style={{
-          background:
-            "radial-gradient(70% 50% at 50% 0%, rgba(47,139,255,0.16), transparent 60%), #04060d",
-        }}
-      />
-    );
-  }
+function CssBackground({ tier }: { tier: PerfTier }) {
+  const dots = useMemo(
+    () =>
+      Array.from({ length: particleBudget(tier) }, () => ({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        size: Math.random() * 2.2 + 1,
+        dur: Math.random() * 4 + 3,
+        delay: Math.random() * 4,
+      })),
+    [tier]
+  );
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
-      <Canvas
-        camera={{ position: [0, 0, 11], fov: 60 }}
-        dpr={dpr}
-        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-        style={{ background: "transparent" }}
-      >
-        <fog attach="fog" args={["#04060d", 9, 22]} />
-        {/* Auto quality scaling based on measured frame rate. */}
-        <PerformanceMonitor
-          flipflops={3}
-          onIncline={() => setDpr(maxDpr)}
-          onDecline={() => setDpr(1)}
-          onFallback={() => setDpr(isMobile ? 0.75 : 0.9)}
-        />
-        <Suspense fallback={null}>
-          <ParticleField quality={isMobile ? "low" : "high"} />
-        </Suspense>
-      </Canvas>
-      {/* Vignette + gradient floor to seat the particles into the page */}
+    <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0" style={{ background: BASE_GRADIENT }} />
+
       <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(80% 60% at 50% -10%, rgba(47,139,255,0.10), transparent 55%), linear-gradient(to bottom, transparent 60%, rgba(4,6,13,0.6) 100%)",
-        }}
+        className="absolute -left-12 top-[12%] size-64 rounded-full bg-laser-500/12 blur-[55px] animate-float"
+        style={{ animationDuration: "12s" }}
       />
+      <div
+        className="absolute right-[-3rem] top-[44%] size-56 rounded-full bg-laser-400/12 blur-[55px] animate-float"
+        style={{ animationDuration: "9s", animationDirection: "alternate-reverse" }}
+      />
+      <div
+        className="absolute bottom-[8%] left-1/3 size-64 rounded-full bg-laser-600/12 blur-[60px] animate-float"
+        style={{ animationDuration: "14s" }}
+      />
+
+      {dots.map((d, i) => (
+        <span
+          key={i}
+          className="absolute rounded-full bg-laser-200 animate-pulse-glow"
+          style={{
+            left: `${d.x}%`,
+            top: `${d.y}%`,
+            width: d.size,
+            height: d.size,
+            boxShadow: "0 0 8px 1px rgba(109,171,255,0.7)",
+            animationDuration: `${d.dur}s`,
+            animationDelay: `${d.delay}s`,
+          }}
+        />
+      ))}
     </div>
   );
+}
+
+/**
+ * Fixed, full-viewport backdrop behind all content. Loaded with `ssr:false`, so
+ * reading matchMedia/navigator in the lazy initialiser is safe.
+ *  - reduced-motion → static gradient
+ *  - mobile / touch → CSS-animated (no WebGL, tier-scaled particles)
+ *  - desktop (mouse) → live 3D particle field
+ */
+export function SceneBackground() {
+  const [mode] = useState<"static" | "css" | "webgl">(() => {
+    if (typeof window === "undefined") return "static";
+    if (prefersReducedMotion()) return "static";
+    return isTouchDevice() ? "css" : "webgl";
+  });
+  const [tier] = useState<PerfTier>(() => detectTier());
+
+  if (mode === "static") return <StaticBackground />;
+  if (mode === "css") return <CssBackground tier={tier} />;
+  return <WebglBackground />;
 }

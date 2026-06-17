@@ -3,6 +3,7 @@
 import dynamic from "next/dynamic";
 
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
+import { PerfProvider } from "@/components/providers/perf-provider";
 import { CustomCursor } from "@/components/effects/custom-cursor";
 import { ScrollProgress } from "@/components/effects/scroll-progress";
 
@@ -15,6 +16,7 @@ const SceneBackground = dynamic(
 export function AppProviders({ children }: { children: React.ReactNode }) {
   return (
     <SmoothScrollProvider>
+      <PerfProvider />
       <SceneBackground />
       <CustomCursor />
       <ScrollProgress />
