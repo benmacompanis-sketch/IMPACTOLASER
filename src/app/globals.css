@@ -390,8 +390,11 @@
 /* En celular corre la MISMA coreografía, sólo que más corta y con menos
    partículas (las últimas se ocultan: son decorativas). */
 @media (max-width: 768px), (pointer: coarse) {
+  /* En celular la página ya está pintada en menos de 1s: a partir de ahí, lo
+     único que separa al visitante del sitio es esta animación. Por eso acá
+     dura la mitad que en desktop — misma coreografía, sin momentos de sobra. */
   .intro-root {
-    --intro-dur: 3.2s;
+    --intro-dur: 2s;
   }
   .intro-particle:nth-child(n + 17) {
     display: none;
