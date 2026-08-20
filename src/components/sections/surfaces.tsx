@@ -59,7 +59,7 @@ export function Surfaces() {
                           visible: { opacity: 1, scale: 1, y: 0 },
                         }}
                         whileHover={{ y: -3 }}
-                        className="group/pill inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 text-sm text-foreground/85 transition-colors duration-300 hover:border-laser-400/50 hover:bg-laser-500/10 hover:text-white"
+                        className="m-show group/pill inline-flex items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3.5 py-2 text-sm text-foreground/85 transition-colors duration-300 hover:border-laser-400/50 hover:bg-laser-500/10 hover:text-white"
                       >
                         <span className="size-1.5 rounded-full bg-laser-400/70 transition-all duration-300 group-hover/pill:bg-laser-200 group-hover/pill:shadow-glow-sm" />
                         {item}

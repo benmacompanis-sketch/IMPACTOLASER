@@ -5,15 +5,22 @@ import { animate, motion, useInView } from "framer-motion";
 
 import { Section } from "@/components/shared/section";
 import { Reveal } from "@/components/effects/reveal";
+import { isTouchDevice, prefersReducedMotion } from "@/lib/performance";
 import { stats, type Stat } from "@/lib/data";
 
 function Counter({ stat }: { stat: Stat }) {
   const ref = useRef<HTMLSpanElement>(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
-  const [value, setValue] = useState(0);
+  // Render the real number from the server so phones show the right value
+  // immediately, without waiting for the JS bundle to hydrate.
+  const [value, setValue] = useState(stat.value);
 
   useEffect(() => {
     if (!inView) return;
+    // On phones, keep the final number: the count-up costs ~100 React renders
+    // per counter (one per frame) and is a real source of jank on mobile.
+    if (isTouchDevice() || prefersReducedMotion()) return;
+
     const controls = animate(0, stat.value, {
       duration: 1.8,
       ease: [0.22, 1, 0.36, 1],
@@ -53,7 +60,8 @@ export function Stats() {
                 {/* progress bar fills to the value (100% full · 0% empty) */}
                 <div className="mt-4 h-1 w-20 overflow-hidden rounded-full bg-white/10">
                   <motion.div
-                    className="h-full rounded-full bg-laser-gradient shadow-glow-sm"
+                    className="m-bar h-full rounded-full bg-laser-gradient shadow-glow-sm"
+                    style={{ "--w": `${stat.value}%` } as React.CSSProperties}
                     initial={{ width: "0%" }}
                     whileInView={{ width: `${stat.value}%` }}
                     viewport={{ once: true, margin: "-60px" }}

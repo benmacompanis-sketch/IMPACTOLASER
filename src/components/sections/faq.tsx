@@ -28,6 +28,7 @@ export function Faq() {
           {faqs.map((faq, i) => (
             <motion.div
               key={i}
+              className="m-show"
               initial={{ opacity: 0, y: 22, filter: "blur(6px)" }}
               whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-40px" }}

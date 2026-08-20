@@ -69,6 +69,16 @@ export function Intro({ onComplete }: { onComplete?: () => void }) {
 
       const tl = gsap.timeline({ onComplete: unmount });
 
+      // En celular la intro corre la MISMA coreografía, sólo que más rápida.
+      // El timeline no puede empezar hasta que baja y se ejecuta el JS, así que
+      // en un teléfono la espera real es "descarga + intro": a 1x se siente
+      // eterna. Comprimirla acá recorta ~2s sin sacar ningún momento.
+      // En desktop queda intacta (timeScale 1).
+      const fastIntro =
+        window.matchMedia("(max-width: 768px)").matches ||
+        window.matchMedia("(pointer: coarse)").matches;
+      tl.timeScale(fastIntro ? 1.75 : 1);
+
       tl
         // 1 · blue energy + particles awaken from the black
         .to(glowRef.current, { autoAlpha: 1, scale: 1, duration: 1.0, ease: "power2.out" }, 0.25)

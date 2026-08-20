@@ -56,7 +56,7 @@ export function Comparison() {
                     key={p}
                     variants={rowFrom(-1)}
                     whileHover={{ x: 6 }}
-                    className="group flex items-center gap-3 rounded-xl px-3 py-2 transition-colors duration-300 hover:bg-red-500/[0.07]"
+                    className="m-show group flex items-center gap-3 rounded-xl px-3 py-2 transition-colors duration-300 hover:bg-red-500/[0.07]"
                   >
                     <motion.span
                       whileHover={{ rotate: 90, scale: 1.15 }}
@@ -114,7 +114,7 @@ export function Comparison() {
                     key={p}
                     variants={rowFrom(1)}
                     whileHover={{ x: 6 }}
-                    className="group flex items-center gap-3 rounded-xl px-3 py-2 transition-colors duration-300 hover:bg-laser-500/10"
+                    className="m-show group flex items-center gap-3 rounded-xl px-3 py-2 transition-colors duration-300 hover:bg-laser-500/10"
                   >
                     <motion.span
                       whileHover={{ scale: 1.25 }}

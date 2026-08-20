@@ -18,8 +18,14 @@ import { site } from "@/lib/site";
  *    2) npm i sharp --no-save && node scripts/make-logo-transparent.mjs
  * ─────────────────────────────────────────────────────────────────────────
  */
-const FULL_SOURCES = ["/logo-transparent.png", "/logo.svg"];
-const MARK_SOURCES = ["/logo-transparent.png", "/logo-mark.svg"];
+/**
+ *  Se sirve el WebP primero (80KB vs 278KB del PNG: el logo es lo primero que
+ *  se descarga en la intro, así que ese peso se nota directo en celulares).
+ *  Si el navegador no soportara WebP, el onError cae al PNG y luego al SVG.
+ *  Regenerar el WebP: npm i sharp --no-save && node scripts/make-logo-webp.mjs
+ */
+const FULL_SOURCES = ["/logo-transparent.webp", "/logo-transparent.png", "/logo.svg"];
+const MARK_SOURCES = ["/logo-transparent.webp", "/logo-transparent.png", "/logo-mark.svg"];
 
 interface LogoProps {
   variant?: "full" | "mark";

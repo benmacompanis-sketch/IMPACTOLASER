@@ -56,7 +56,7 @@ export function Process() {
                     whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
                     viewport={{ once: true, margin: "-60px" }}
                     transition={{ type: "spring", stiffness: 220, damping: 16, delay: i * 0.12 }}
-                    className="relative z-10 flex size-14 shrink-0 items-center justify-center rounded-2xl border border-laser-500/30 bg-ink-700 text-laser-200 shadow-glow-sm transition-all duration-500 group-hover:scale-105 group-hover:text-white group-hover:shadow-glow"
+                    className="m-show relative z-10 flex size-14 shrink-0 items-center justify-center rounded-2xl border border-laser-500/30 bg-ink-700 text-laser-200 shadow-glow-sm transition-all duration-500 group-hover:scale-105 group-hover:text-white group-hover:shadow-glow"
                   >
                     <Icon className="size-6" />
                     <span className="absolute inset-0 -z-10 rounded-2xl bg-laser-500/10 blur-md" />

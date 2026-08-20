@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
+import Image from "next/image";
 import {
   animate,
   motion,
@@ -11,6 +12,9 @@ import {
 } from "framer-motion";
 import { MoveHorizontal } from "lucide-react";
 
+import dirtyPhoto from "../../../public/demo-sucio.jpg";
+import cleanPhoto from "../../../public/demo-limpio.jpg";
+
 /**
  * Interactive ablation demo as a "before/after" reveal slider.
  * LEFT of the laser = clean original surface, RIGHT = still contaminated.
@@ -18,43 +22,20 @@ import { MoveHorizontal } from "lucide-react";
  * Interaction: press & drag the laser line (no hover-move) — like a real slider.
  * Works with touch (horizontal drag = slider, vertical = page scroll).
  *
- * Real photos: drop /demo-sucio.jpg (oxidado) and /demo-limpio.jpg (limpio)
- * into /public and the demo uses them automatically; otherwise it falls back
- * to an abstract metallic/rust surface.
+ * The photos are imported statically so Next optimises them: AVIF/WebP at the
+ * device's real width (instead of shipping the full 1600px JPEGs) and an
+ * automatic blur placeholder. While a photo streams in, the viewer sees a
+ * blurred version of the REAL photo — never a stand-in surface.
  */
-const DIRTY_SRC = "/demo-sucio.jpg";
-const CLEAN_SRC = "/demo-limpio.jpg";
-
 export function LaserDemo() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-120px" });
   const dragging = useRef(false);
   const autoControls = useRef<AnimationPlaybackControls | null>(null);
-  const [hasPhotos, setHasPhotos] = useState(false);
 
   const clean = useMotionValue(0); // 0 → 100, cleaned from the left
   const grimeClip = useMotionTemplate`inset(0 0 0 ${clean}%)`;
   const edge = useMotionTemplate`${clean}%`;
-
-  // Detect optional before/after photos — deferred until the demo is near the
-  // viewport so the ~500KB of images don't compete with the initial load.
-  useEffect(() => {
-    if (!inView) return;
-    let mounted = true;
-    const load = (src: string) =>
-      new Promise<boolean>((resolve) => {
-        const img = new window.Image();
-        img.onload = () => resolve(true);
-        img.onerror = () => resolve(false);
-        img.src = src;
-      });
-    Promise.all([load(DIRTY_SRC), load(CLEAN_SRC)]).then(([a, b]) => {
-      if (mounted) setHasPhotos(a && b);
-    });
-    return () => {
-      mounted = false;
-    };
-  }, [inView]);
 
   // Auto demo: dirty → fully clean → settle at half.
   useEffect(() => {
@@ -101,23 +82,14 @@ export function LaserDemo() {
       >
         {/* CLEAN surface (revealed, left of the laser) */}
         <div className="absolute inset-0">
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={
-              hasPhotos
-                ? { backgroundImage: `url(${CLEAN_SRC})` }
-                : {
-                    background:
-                      "linear-gradient(135deg, #27456f 0%, #3d8eff2e 38%, #16223f 78%), repeating-linear-gradient(115deg, rgba(255,255,255,0.06) 0 2px, transparent 2px 8px)",
-                  }
-            }
+          <Image
+            src={cleanPhoto}
+            alt="Superficie metálica restaurada tras la limpieza laser"
+            fill
+            sizes="(max-width: 768px) 100vw, 1100px"
+            placeholder="blur"
+            className="object-cover"
           />
-          {!hasPhotos && (
-            <>
-              <div className="absolute inset-0 bg-tech-grid opacity-50" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-laser-400/10 to-transparent" />
-            </>
-          )}
           <div className="absolute bottom-5 left-5">
             <span className="rounded-full border border-laser-400/30 bg-laser-500/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-laser-200 backdrop-blur-sm">
               ✓ Superficie limpia
@@ -127,27 +99,14 @@ export function LaserDemo() {
 
         {/* GRIME layer (clipped away as you clean, right of the laser) */}
         <motion.div className="absolute inset-0" style={{ clipPath: grimeClip }}>
-          <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={
-              hasPhotos
-                ? { backgroundImage: `url(${DIRTY_SRC})` }
-                : {
-                    background:
-                      "linear-gradient(135deg, #3a2912 0%, #1c130a 45%, #2e2110 100%)",
-                  }
-            }
+          <Image
+            src={dirtyPhoto}
+            alt="Superficie metálica oxidada antes del tratamiento"
+            fill
+            sizes="(max-width: 768px) 100vw, 1100px"
+            placeholder="blur"
+            className="object-cover"
           />
-          {!hasPhotos && (
-            <div
-              className="absolute inset-0 opacity-80 mix-blend-overlay"
-              style={{
-                backgroundImage:
-                  "radial-gradient(circle at 20% 30%, rgba(150,105,45,0.7) 0 7px, transparent 8px), radial-gradient(circle at 70% 60%, rgba(95,68,32,0.8) 0 10px, transparent 11px), radial-gradient(circle at 45% 80%, rgba(165,115,55,0.6) 0 6px, transparent 7px), radial-gradient(circle at 85% 25%, rgba(110,80,40,0.7) 0 8px, transparent 9px), radial-gradient(circle at 33% 55%, rgba(80,55,28,0.7) 0 12px, transparent 13px)",
-                backgroundSize: "110px 110px",
-              }}
-            />
-          )}
           <div className="absolute bottom-5 right-5">
             <span className="rounded-full border border-amber-700/40 bg-amber-950/50 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-amber-200/90 backdrop-blur-sm">
               Superficie oxidada
