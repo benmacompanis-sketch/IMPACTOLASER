@@ -394,10 +394,22 @@
      único que separa al visitante del sitio es esta animación. Por eso acá
      dura la mitad que en desktop — misma coreografía, sin momentos de sobra. */
   .intro-root {
-    --intro-dur: 2s;
+    --intro-dur: 1.4s;
   }
   .intro-particle:nth-child(n + 17) {
     display: none;
+  }
+}
+
+/* SÓLO EN CELULAR: si el visitante ya vio la intro en esta sesión, no se le
+   vuelve a mostrar y entra directo al sitio (bajo medio segundo). El atributo
+   lo pone un script diminuto al principio del <body>, antes de que se pinte
+   nada, así no hay ni un parpadeo del overlay. Se usa un data-attribute y no
+   una clase porque React controla el className del <html> y se lo lleva puesto
+   al hidratar. En desktop la intro se ve siempre, como hasta ahora. */
+@media (max-width: 768px), (pointer: coarse) {
+  [data-intro="seen"] .intro-root {
+    display: none !important;
   }
 }
 

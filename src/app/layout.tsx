@@ -105,6 +105,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body>
+        {/* Corre antes de que se pinte nada: si el visitante ya vio la intro en
+            esta sesión, marca el <html> y el CSS la oculta de entrada. Así
+            volver al sitio (o recargar) es instantáneo, sin parpadeo. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{var k="il-intro";if(sessionStorage.getItem(k)){document.documentElement.setAttribute("data-intro","seen")}else{sessionStorage.setItem(k,"1")}}catch(e){}`,
+          }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
