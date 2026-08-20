@@ -88,7 +88,8 @@ export function LaserDemo() {
             fill
             sizes="(max-width: 768px) 100vw, 1100px"
             placeholder="blur"
-            className="object-cover"
+            draggable={false}
+            className="no-drag pointer-events-none select-none object-cover"
           />
           <div className="absolute bottom-5 left-5">
             <span className="rounded-full border border-laser-400/30 bg-laser-500/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-laser-200 backdrop-blur-sm">
@@ -105,7 +106,8 @@ export function LaserDemo() {
             fill
             sizes="(max-width: 768px) 100vw, 1100px"
             placeholder="blur"
-            className="object-cover"
+            draggable={false}
+            className="no-drag pointer-events-none select-none object-cover"
           />
           <div className="absolute bottom-5 right-5">
             <span className="rounded-full border border-amber-700/40 bg-amber-950/50 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.18em] text-amber-200/90 backdrop-blur-sm">

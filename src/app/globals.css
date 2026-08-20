@@ -226,6 +226,14 @@
     mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
   }
 
+  /* Impide que el navegador "levante" la imagen con su drag nativo (y el menú
+     de guardar imagen al mantener apretado en iOS). Sin esto, arrastrar sobre
+     una <img> secuestra el gesto del slider antes/después. */
+  .no-drag {
+    -webkit-user-drag: none;
+    -webkit-touch-callout: none;
+  }
+
   .perspective-1000 {
     perspective: 1000px;
   }
