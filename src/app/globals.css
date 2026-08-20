@@ -390,14 +390,155 @@
 /* En celular corre la MISMA coreografía, sólo que más corta y con menos
    partículas (las últimas se ocultan: son decorativas). */
 @media (max-width: 768px), (pointer: coarse) {
-  /* En celular la página ya está pintada en menos de 1s: a partir de ahí, lo
-     único que separa al visitante del sitio es esta animación. Por eso acá
-     dura la mitad que en desktop — misma coreografía, sin momentos de sobra. */
+  /* En celular la intro se ve UNA sola vez por sesión, así que puede tomarse su
+     tiempo. Pero no se reparte igual que en desktop: acá el armado (energía,
+     haz, destello) va comprimido y el logo se lleva la mayor parte, porque es
+     lo que tiene que quedar grabado. Queda a plena vista casi un segundo,
+     contra los 0.27s que daba repartir los tiempos como en desktop. */
   .intro-root {
-    --intro-dur: 1.4s;
+    --intro-dur: 2.8s;
+    animation-name: intro-root-m;
+  }
+  .intro-glow {
+    animation-name: intro-glow-m;
+  }
+  .intro-particles {
+    animation-name: intro-particles-m;
+  }
+  .intro-beam {
+    animation-name: intro-beam-m;
+  }
+  .intro-head {
+    animation-name: intro-head-m;
+  }
+  .intro-flash {
+    animation-name: intro-flash-m;
+  }
+  .intro-logo {
+    animation-name: intro-logo-m;
   }
   .intro-particle:nth-child(n + 17) {
     display: none;
+  }
+}
+
+/* ── Intro de celular: mismos momentos, otro reparto ───────────────────────
+   Sobre 2.8s: el haz barre hasta 0.9s, destello a 0.95s, el logo resuelve
+   entre 0.95s y 1.5s y SOSTIENE hasta 2.45s antes de disolverse. */
+@keyframes intro-root-m {
+  0%,
+  88% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@keyframes intro-glow-m {
+  0%,
+  4% {
+    opacity: 0;
+    transform: scale(0.45);
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  25%,
+  60% {
+    opacity: 1;
+    transform: scale(1);
+    animation-timing-function: ease-in-out;
+  }
+  95%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1.12);
+  }
+}
+
+@keyframes intro-particles-m {
+  0%,
+  5% {
+    opacity: 0;
+  }
+  20%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes intro-beam-m {
+  0%,
+  8% {
+    transform: scaleX(0);
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  32%,
+  40% {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+  52%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0;
+  }
+}
+
+@keyframes intro-head-m {
+  0%,
+  8% {
+    left: 0%;
+    opacity: 0;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  12% {
+    opacity: 1;
+    animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
+  }
+  32% {
+    left: 100%;
+    opacity: 1;
+  }
+  36%,
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes intro-flash-m {
+  0%,
+  30% {
+    opacity: 0;
+  }
+  34% {
+    opacity: 0.9;
+  }
+  46%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes intro-logo-m {
+  0%,
+  34% {
+    opacity: 0;
+    transform: scale(0.9);
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  54%,
+  88% {
+    opacity: 1;
+    transform: scale(1);
+    animation-timing-function: ease-in-out;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.04);
   }
 }
 
