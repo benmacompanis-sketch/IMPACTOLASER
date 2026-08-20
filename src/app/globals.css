@@ -337,6 +337,35 @@
     transform: none !important;
     pointer-events: auto !important;
   }
+
+  /* ── TÍTULOS INVISIBLES EN iOS — la causa de "la web se ve invisible" ──
+     Los títulos de sección se pintaban SÓLO con un degradado recortado sobre
+     la letra (background-clip:text + text-fill-color:transparent). Ese truco
+     se rompe en Safari de iPhone cuando el elemento vive en una capa de GPU,
+     y como el relleno del texto es transparente, la palabra desaparece por
+     completo. Los elementos animados llevaban will-change:transform, que es
+     justamente lo que crea esa capa — de ahí que a veces se vieran y a veces
+     no, y que aparecieran recién cuando Safari repintaba.
+
+     Dos arreglos: se saca la capa de GPU (ya no hace falta, en celular no hay
+     animación de entrada) y el texto se pinta con color sólido en vez de
+     depender del degradado. Así es imposible que un título quede invisible.
+     En desktop no cambia nada: el degradado sigue intacto. */
+  .m-show,
+  .m-solid {
+    will-change: auto !important;
+  }
+
+  .m-solid {
+    background-image: none !important;
+    -webkit-background-clip: border-box !important;
+    background-clip: border-box !important;
+    -webkit-text-fill-color: currentColor !important;
+    color: #eaf3ff;
+  }
+  .m-solid.text-gradient-laser {
+    color: #cfe4ff;
+  }
   /* Progress bars animate `width` (not covered by the rules above): show them
      already filled on mobile. The target width travels in the --w variable. */
   .m-bar {
