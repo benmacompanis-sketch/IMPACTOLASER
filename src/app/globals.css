@@ -514,18 +514,6 @@
   }
 }
 
-/* SÓLO EN CELULAR: si el visitante ya vio la intro en esta sesión, no se le
-   vuelve a mostrar y entra directo al sitio (bajo medio segundo). El atributo
-   lo pone un script diminuto al principio del <body>, antes de que se pinte
-   nada, así no hay ni un parpadeo del overlay. Se usa un data-attribute y no
-   una clase porque React controla el className del <html> y se lo lleva puesto
-   al hidratar. En desktop la intro se ve siempre, como hasta ahora. */
-@media (max-width: 768px), (pointer: coarse) {
-  [data-intro="seen"] .intro-root {
-    display: none !important;
-  }
-}
-
 .intro-glow {
   animation: intro-glow var(--intro-dur) linear forwards;
 }

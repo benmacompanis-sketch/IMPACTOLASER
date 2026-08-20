@@ -52,20 +52,14 @@ export function Intro({ onComplete }: { onComplete?: () => void }) {
       setHidden(true);
     };
 
-    // Si el CSS ya la ocultó (celular + ya vista en esta sesión), o el visitante
-    // pidió menos animaciones, se entra directo al sitio. Se consulta el estado
-    // real que decidió el CSS, así la regla vive en un solo lugar y el desktop
-    // queda fuera automáticamente.
-    const hiddenByCss = root ? getComputedStyle(root).display === "none" : false;
-    if (!root || hiddenByCss || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    // La intro se muestra SIEMPRE, en cada visita: es el momento de marca.
+    // Lo único que la saltea es que el visitante haya pedido menos animaciones
+    // en su sistema.
+    if (!root || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       revealSite();
       unmount();
       return;
     }
-
-    // (La marca de "ya la vio" la escribe el script del layout en el primer
-    //  pintado, no acá: si dependiera de React, en redes lentas se escribiría
-    //  demasiado tarde y la intro se repetiría.)
 
     // La animación ya venía corriendo antes de que este código existiera: se le
     // pregunta al navegador en qué punto está, en vez de reiniciar la cuenta.
