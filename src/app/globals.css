@@ -330,6 +330,13 @@
   .m-show-op {
     opacity: 1 !important;
   }
+  /* Igual que .m-show pero además clickeable: para el botón flotante de
+     WhatsApp, que no puede quedar esperando a que cargue el JS. */
+  .m-show-tap {
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+  }
   /* Progress bars animate `width` (not covered by the rules above): show them
      already filled on mobile. The target width travels in the --w variable. */
   .m-bar {

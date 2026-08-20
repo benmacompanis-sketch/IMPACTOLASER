@@ -48,7 +48,7 @@ export function Navbar({ started = true }: { started?: boolean }) {
         initial={{ y: -90, opacity: 0 }}
         animate={started ? { y: 0, opacity: 1 } : { y: -90, opacity: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 sm:pt-4"
+        className="m-show fixed inset-x-0 top-0 z-50 flex justify-center px-4 pt-3 sm:pt-4"
       >
         <nav
           className={cn(

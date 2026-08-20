@@ -163,6 +163,8 @@ export function Footer() {
             <img
               src="/idea-code-logo-dark.png"
               alt="I.D.E.A Code — Innovación Digital para Empresas y Agencias"
+              loading="lazy"
+              decoding="async"
               className="h-11 w-auto transition-transform duration-300 group-hover:scale-105 sm:h-14"
             />
             <ArrowUpRight className="size-4 shrink-0 text-muted-foreground/40 transition-all duration-300 group-hover:translate-x-0.5 group-hover:text-[#6aae7e]" />
