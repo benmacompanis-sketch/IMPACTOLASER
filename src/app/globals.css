@@ -540,6 +540,51 @@
   }
 }
 
+/* ── iOS: ZONAS EN NEGRO POR EXCESO DE CAPAS DE GPU ────────────────────────
+   Safari en iPhone tiene un límite de memoria para rasterizar la pantalla. Esta
+   página es muy larga y tenía 22 elementos con backdrop-filter y 13 con
+   desenfoques de 90-140px: cada uno obliga a Safari a crear y mantener una
+   textura enorme. Cuando se pasa del límite, Safari directamente NO pinta esas
+   zonas y quedan en negro (o pinta sólo una franja, como pasaba con la foto del
+   demo), hasta que consigue repintar segundos después.
+
+   Acá se baja ese costo drásticamente en celular. Los colores y el layout no
+   cambian: lo único que se pierde es el desenfoque del vidrio (que sobre un
+   fondo oscuro casi no se nota) y los halos quedan un poco más definidos.
+   En desktop no se toca nada. */
+@media (max-width: 768px), (pointer: coarse) {
+  /* 1 · Sin backdrop-filter. Se compensa con un fondo más opaco para que los
+         paneles sigan leyéndose como vidrio oscuro. */
+  .glass {
+    background: rgba(12, 19, 36, 0.88);
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  .glass-strong {
+    background: rgba(7, 11, 22, 0.95);
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  [class*="backdrop-blur"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+
+  /* 2 · Los desenfoques gigantes se acotan. El costo de un blur crece con el
+         radio, así que pasar de 140px a 60px es la diferencia entre una textura
+         que Safari no puede sostener y una que sí. */
+  [class*="blur-["] {
+    --tw-blur: blur(60px) !important;
+  }
+
+  /* 3 · El fondo fijo deja de animarse: al ser fixed y cubrir toda la pantalla,
+         animarlo obliga a recomponer todo mientras se scrollea. */
+  .animate-float,
+  .animate-spin-slow {
+    animation: none !important;
+  }
+}
+
 /* Respect reduced motion across the board */
 @media (prefers-reduced-motion: reduce) {
   *,
