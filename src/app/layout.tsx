@@ -21,6 +21,10 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
+  // Sólo se usa en etiquetas chicas ("PASO 01", numeritos), nunca en lo primero
+  // que se ve. Sin preload deja de competir por el ancho de banda del arranque
+  // en celulares: son ~22KB menos peleando con el CSS y el HTML.
+  preload: false,
 });
 
 export const viewport: Viewport = {

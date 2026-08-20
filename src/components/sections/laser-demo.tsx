@@ -88,6 +88,7 @@ export function LaserDemo() {
             fill
             sizes="(max-width: 768px) 100vw, 1100px"
             placeholder="blur"
+            quality={62}
             draggable={false}
             className="no-drag pointer-events-none select-none object-cover"
           />
@@ -106,6 +107,7 @@ export function LaserDemo() {
             fill
             sizes="(max-width: 768px) 100vw, 1100px"
             placeholder="blur"
+            quality={62}
             draggable={false}
             className="no-drag pointer-events-none select-none object-cover"
           />
