@@ -5,16 +5,21 @@ import { AppProviders } from "@/components/providers/app-providers";
 import { site } from "@/lib/site";
 import "./globals.css";
 
+// Ninguna fuente se precarga: durante la intro no se ve texto, así que pueden
+// cargar tapadas por el overlay en vez de pelearle el ancho de banda al logo,
+// que sí se ve. Con display:swap el texto aparece igual si alguna llega tarde.
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
   display: "swap",
+  preload: false,
 });
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-display",
   display: "swap",
+  preload: false,
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -105,6 +110,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
     >
       <body>
+        {/* El logo ES la intro: si llega tarde, la animación corre sin él. Sin
+            esta línea el navegador lo descubría recién al parsear el componente
+            y competía con todo el JavaScript, llegando último (2.7s en una
+            prueba con 4G flojo). Declarado acá arriba, el preload scanner lo ve
+            apenas empieza a leer el documento y lo baja con prioridad alta. */}
+        {/* eslint-disable-next-line @next/next/no-head-element */}
+        <link
+          rel="preload"
+          as="image"
+          href="/logo-transparent.webp"
+          type="image/webp"
+          fetchPriority="high"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
