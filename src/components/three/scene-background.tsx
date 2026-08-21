@@ -50,17 +50,25 @@ function CssBackground({ tier }: { tier: PerfTier }) {
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0" style={{ background: BASE_GRADIENT }} />
 
+      {/* Halos como degradado radial y NO como círculo desenfocado. Este fondo
+          es position:fixed y cubre toda la pantalla: Safari lo recompone en cada
+          frame del scroll, y un filtro blur ahí obliga a re-rasterizar una
+          textura enorme constantemente (de ahí que al bajar quedaran zonas sin
+          pintar). Un degradado radial se ve igual de suave y no cuesta nada. */}
       <div
-        className="absolute -left-12 top-[12%] size-64 rounded-full bg-laser-500/12 blur-[55px] animate-float"
-        style={{ animationDuration: "12s" }}
+        aria-hidden
+        className="absolute -left-12 top-[12%] size-64 rounded-full"
+        style={{ background: "radial-gradient(closest-side, rgba(47,139,255,0.20), transparent)" }}
       />
       <div
-        className="absolute right-[-3rem] top-[44%] size-56 rounded-full bg-laser-400/12 blur-[55px] animate-float"
-        style={{ animationDuration: "9s", animationDirection: "alternate-reverse" }}
+        aria-hidden
+        className="absolute right-[-3rem] top-[44%] size-56 rounded-full"
+        style={{ background: "radial-gradient(closest-side, rgba(61,142,255,0.20), transparent)" }}
       />
       <div
-        className="absolute bottom-[8%] left-1/3 size-64 rounded-full bg-laser-600/12 blur-[60px] animate-float"
-        style={{ animationDuration: "14s" }}
+        aria-hidden
+        className="absolute bottom-[8%] left-1/3 size-64 rounded-full"
+        style={{ background: "radial-gradient(closest-side, rgba(31,111,230,0.20), transparent)" }}
       />
 
       {dots.map((d, i) => (

@@ -89,6 +89,9 @@ export function LaserDemo() {
             sizes="(max-width: 768px) 100vw, 1100px"
             placeholder="blur"
             quality={62}
+            // Se bajan durante la intro, no al llegar scrolleando: cuando la
+            // animación termina la foto ya está lista y no aparece a pedazos.
+            loading="eager"
             draggable={false}
             className="no-drag pointer-events-none select-none object-cover"
           />
@@ -108,6 +111,9 @@ export function LaserDemo() {
             sizes="(max-width: 768px) 100vw, 1100px"
             placeholder="blur"
             quality={62}
+            // Se bajan durante la intro, no al llegar scrolleando: cuando la
+            // animación termina la foto ya está lista y no aparece a pedazos.
+            loading="eager"
             draggable={false}
             className="no-drag pointer-events-none select-none object-cover"
           />

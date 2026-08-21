@@ -86,6 +86,7 @@ export function Intro({ onComplete }: { onComplete?: () => void }) {
     // El sitio entra mientras el overlay se disuelve (mismo solape que antes).
     let cancelled = false;
     const revealTimer = window.setTimeout(revealSite, Math.max(0, duration * 0.845 - current));
+
     anim.finished
       .then(() => {
         if (!cancelled) unmount();
