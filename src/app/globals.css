@@ -543,7 +543,7 @@
      lo que tiene que quedar grabado. Queda a plena vista casi un segundo,
      contra los 0.27s que daba repartir los tiempos como en desktop. */
   .intro-root {
-    --intro-dur: 2.2s;
+    --intro-dur: 2.6s;
     animation-name: intro-root-m;
   }
   .intro-glow {
