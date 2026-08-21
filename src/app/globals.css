@@ -735,6 +735,20 @@
   .animate-spin-slow {
     animation: none !important;
   }
+
+  /* 4 · Animaciones infinitas decorativas congeladas. Cada elemento que anima
+         sin parar se promueve a su propia capa y se repinta para siempre; eran
+         ~70 en la página. Se dejan en su estado visible: los puntos siguen
+         estando, los halos siguen estando, sólo dejan de latir. */
+  .animate-pulse,
+  .animate-pulse-glow,
+  .animate-bounce {
+    animation: none !important;
+  }
+  .laser-line::after {
+    animation: none !important;
+    opacity: 0.4;
+  }
 }
 
 /* Respect reduced motion across the board */

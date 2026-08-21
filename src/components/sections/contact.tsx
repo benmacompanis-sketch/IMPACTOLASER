@@ -62,14 +62,15 @@ export function Contact() {
         {dots.map((d, i) => (
           <span
             key={i}
-            className="absolute rounded-full bg-laser-200"
+            className="absolute rounded-full bg-laser-200 animate-pulse-glow"
             style={{
               left: `${d.x}%`,
               top: `${d.y}%`,
               width: d.size,
               height: d.size,
               boxShadow: "0 0 8px 1px rgba(109,171,255,0.8)",
-              animation: `pulse-glow ${d.dur}s ease-in-out ${d.delay}s infinite`,
+              animationDuration: `${d.dur}s`,
+              animationDelay: `${d.delay}s`,
             }}
           />
         ))}

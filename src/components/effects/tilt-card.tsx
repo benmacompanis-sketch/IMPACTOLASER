@@ -56,6 +56,16 @@ export function TiltCard({
     my.set(50);
   };
 
+  // El 3D sólo se monta donde hay puntero fino. Sin esto, cada tarjeta arrastra
+  // una capa de GPU propia (perspective + preserve-3d + translateZ) aunque el
+  // efecto no se pueda usar nunca: en celular eran ~30 capas de puro costo, y
+  // pasado el límite de memoria Safari deja de pintar zonas enteras.
+  // El hook arranca en false, así que tampoco pesan durante la carga inicial
+  // en escritorio; el tilt se activa apenas hidrata.
+  if (!hasFinePointer) {
+    return <div className={cn("group relative rounded-2xl", className)}>{children}</div>;
+  }
+
   return (
     <motion.div
       ref={ref}
