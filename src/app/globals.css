@@ -722,11 +722,20 @@
     backdrop-filter: none !important;
   }
 
-  /* 2 · Los desenfoques gigantes se acotan. El costo de un blur crece con el
-         radio, así que pasar de 140px a 60px es la diferencia entre una textura
-         que Safari no puede sostener y una que sí. */
+  /* 2 · Los halos redondos dejan de usar filtro. Un blur es una convolución
+         sobre toda el área (un blur de 140px sobre un círculo de 640px es
+         carísimo) y hay que rehacerla cada vez que Safari rasteriza ese tile:
+         de ahí que al scrollear quedaran franjas sin pintar. Se reemplaza por
+         una máscara radial, que es una multiplicación por píxel y se ve igual
+         de suave. El resto de los desenfoques (chicos) sólo se acotan. */
+  /* Alcanza tanto a blur-[90px] como a blur-3xl / blur-2xl. */
+  .rounded-full[class*="blur-"] {
+    filter: none !important;
+    -webkit-mask-image: radial-gradient(closest-side, #000 10%, transparent 100%);
+    mask-image: radial-gradient(closest-side, #000 10%, transparent 100%);
+  }
   [class*="blur-["] {
-    --tw-blur: blur(60px) !important;
+    --tw-blur: blur(40px) !important;
   }
 
   /* 3 · El fondo fijo deja de animarse: al ser fixed y cubrir toda la pantalla,
