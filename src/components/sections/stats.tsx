@@ -45,7 +45,7 @@ export function Stats() {
           <div className="laser-line pointer-events-none absolute inset-x-0 top-0 h-px" />
           {/* breathing top glow (opacity only — keeps the -translate centring) */}
           <motion.div
-            className="pointer-events-none absolute left-1/2 top-0 h-40 w-[40rem] max-w-full -translate-x-1/2 bg-laser-radial"
+            className="pointer-events-none absolute left-1/2 top-0 h-40 w-[40rem] max-w-full -translate-x-1/2 glow-fade-top bg-laser-radial"
             animate={{ opacity: [0.5, 0.9, 0.5] }}
             transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
           />

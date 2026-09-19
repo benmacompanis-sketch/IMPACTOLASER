@@ -200,6 +200,11 @@
   }
 
   /* Radial spotlight overlay anchored to mouse via CSS vars */
+  .glow-fade-top {
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 40%);
+    mask-image: linear-gradient(to bottom, transparent, #000 40%);
+  }
+
   .spotlight {
     background: radial-gradient(
       600px circle at var(--mx, 50%) var(--my, 50%),

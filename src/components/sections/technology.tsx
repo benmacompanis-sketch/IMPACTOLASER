@@ -10,7 +10,7 @@ export function Technology() {
   return (
     <Section id="tecnologia">
       {/* ambient section glow */}
-      <div className="pointer-events-none absolute left-1/2 top-0 -z-[1] h-80 w-[60rem] max-w-full -translate-x-1/2 bg-laser-radial opacity-60" />
+      <div className="pointer-events-none absolute left-1/2 top-0 -z-[1] h-80 w-[60rem] max-w-full -translate-x-1/2 glow-fade-top bg-laser-radial opacity-60" />
 
       <SectionHeading
         eyebrow="La tecnología"
