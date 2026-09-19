@@ -133,9 +133,15 @@ export function Footer() {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-4 border-t border-white/[0.06] py-7 sm:flex-row">
-          <p className={cn("text-xs text-muted-foreground")}>
+          <div className="flex flex-col items-center gap-2 sm:items-start">
+            <p className={cn("text-xs text-muted-foreground")}>
             © {new Date().getFullYear()} {site.name}. Todos los derechos reservados.
           </p>
+            <div className="flex gap-4 text-xs text-muted-foreground">
+              <a href="/privacidad" className="transition-colors hover:text-laser-200">Política de privacidad</a>
+              <a href="/aviso-legal" className="transition-colors hover:text-laser-200">Aviso legal</a>
+            </div>
+          </div>
           <button
             onClick={toTop}
             className="group flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-laser-200"
