@@ -30,7 +30,7 @@ export default function Home() {
 
       <a
         href="#inicio"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-lg focus:bg-laser-600 focus:px-4 focus:py-2 focus:text-white"
+        className="sr-only focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[200] focus-visible:rounded-lg focus-visible:bg-laser-600 focus-visible:px-4 focus-visible:py-2 focus-visible:text-white"
       >
         Saltar al contenido
       </a>
