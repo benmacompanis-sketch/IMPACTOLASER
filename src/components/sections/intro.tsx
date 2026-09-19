@@ -38,8 +38,12 @@ const PARTICLES = [
   [91, 64, 1.3, 0.45, 2.1],
 ] as const;
 
+// Solo se reproduce una vez por carga de pagina (persiste entre navegaciones
+// del cliente; se resetea al refrescar o abrir una pestana nueva).
+let introHasPlayed = false;
+
 export function Intro({ onComplete }: { onComplete?: () => void }) {
-  const [hidden, setHidden] = useState(false);
+  const [hidden, setHidden] = useState(() => introHasPlayed);
   const rootRef = useRef<HTMLDivElement>(null);
   const onCompleteRef = useRef(onComplete);
   onCompleteRef.current = onComplete;
@@ -55,6 +59,11 @@ export function Intro({ onComplete }: { onComplete?: () => void }) {
     // La intro se muestra SIEMPRE, en cada visita: es el momento de marca.
     // Lo único que la saltea es que el visitante haya pedido menos animaciones
     // en su sistema.
+    // Ya se reprodujo en esta carga de pagina (por ej. volviste de /privacidad):
+    // no se repite. Se resetea al refrescar o abrir en pestana nueva.
+    if (introHasPlayed) { revealSite(); unmount(); return; }
+    introHasPlayed = true;
+
     if (!root || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       revealSite();
       unmount();

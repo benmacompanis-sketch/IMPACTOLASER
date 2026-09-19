@@ -1,6 +1,7 @@
 "use client";
 
 import { ArrowUp, ArrowUpRight, MessageCircle, Mail, Phone, MapPin } from "lucide-react";
+import Link from "next/link";
 
 import { Logo } from "@/components/brand/logo";
 import { socialIconMap } from "@/components/brand/social-icons";
@@ -138,8 +139,8 @@ export function Footer() {
             © {new Date().getFullYear()} {site.name}. Todos los derechos reservados.
           </p>
             <div className="flex gap-4 text-xs text-muted-foreground">
-              <a href="/privacidad" className="transition-colors hover:text-laser-200">Política de privacidad</a>
-              <a href="/aviso-legal" className="transition-colors hover:text-laser-200">Aviso legal</a>
+              <Link href="/privacidad" className="transition-colors hover:text-laser-200">Política de privacidad</Link>
+              <Link href="/aviso-legal" className="transition-colors hover:text-laser-200">Aviso legal</Link>
             </div>
           </div>
           <button
