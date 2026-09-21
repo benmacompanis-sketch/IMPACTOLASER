@@ -46,12 +46,16 @@ export default function WebglBackground({ tier = "high" }: { tier?: PerfTier }) 
           <ParticleField quality={cfg.quality} />
         </Suspense>
       </Canvas>
-      {/* Vignette + gradient floor to seat the particles into the page */}
+      {/* Tenue resplandor superior. Antes tenía un corte (radial que terminaba
+          al 55% + un oscurecido lineal abajo) y, al ser un overlay FIJO, esas
+          transiciones se veían como líneas horizontales que "dividían" a la
+          misma altura en todas las secciones. Ahora es un solo degradado muy
+          suave que se desvanece del todo, sin bordes. */}
       <div
         className="absolute inset-0"
         style={{
           background:
-            "radial-gradient(80% 60% at 50% -10%, rgba(47,139,255,0.10), transparent 55%), linear-gradient(to bottom, transparent 60%, rgba(4,6,13,0.6) 100%)",
+            "radial-gradient(120% 120% at 50% -30%, rgba(47,139,255,0.06), transparent 80%)",
         }}
       />
     </div>
