@@ -1,6 +1,6 @@
 "use client";
 
-import { Quote, Star, BadgeCheck } from "lucide-react";
+import { Quote } from "lucide-react";
 
 import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
@@ -10,11 +10,6 @@ function Card({ t }: { t: Testimonial }) {
   return (
     <figure className="mr-5 flex w-[min(85vw,380px)] shrink-0 flex-col rounded-3xl border border-white/[0.07] bg-card/50 p-7 backdrop-blur-md transition-colors duration-300 hover:border-laser-500/30">
       <div className="flex items-center justify-between">
-        <div className="flex gap-0.5" aria-label="5 de 5 estrellas">
-          {Array.from({ length: 5 }).map((_, s) => (
-            <Star key={s} className="size-4 fill-laser-300 text-laser-300" />
-          ))}
-        </div>
         <Quote className="size-8 text-laser-400/30" />
       </div>
       <blockquote className="mt-4 flex-1 text-[15px] leading-relaxed text-foreground/90">
@@ -27,7 +22,6 @@ function Card({ t }: { t: Testimonial }) {
         <div>
           <div className="flex items-center gap-1.5 text-sm font-medium text-white">
             {t.author}
-            <BadgeCheck className="size-3.5 text-laser-300" />
           </div>
           <div className="text-xs text-muted-foreground">{t.role}</div>
         </div>
@@ -37,6 +31,8 @@ function Card({ t }: { t: Testimonial }) {
 }
 
 export function Testimonials() {
+  if (testimonials.length === 0) return null;
+
   // duplicated so the track can loop seamlessly (-50% === one full set)
   const loop = [...testimonials, ...testimonials];
 

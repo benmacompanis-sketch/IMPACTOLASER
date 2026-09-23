@@ -20,7 +20,7 @@ export default function PrivacidadPage() {
         Política de Privacidad
       </h1>
       <p className="mt-3 text-sm text-muted-foreground">
-        Última actualización: 19 de septiembre de 2026
+        Última actualización: 23 de septiembre de 2026
       </p>
 
       <div className="mt-10 space-y-8 text-[15px] leading-relaxed text-foreground/80">
@@ -39,6 +39,11 @@ export default function PrivacidadPage() {
             Este sitio no utiliza cookies de seguimiento, no tiene herramientas de analítica ni formularios que
             almacenen información. Solo recibimos los datos que nos brindás voluntariamente cuando nos escribís por
             WhatsApp, teléfono o correo electrónico (por ejemplo, tu nombre, teléfono y tu consulta).
+          </p>
+          <p className="mt-2">
+            Además, nuestro proveedor de alojamiento (Vercel Inc., con servidores en Estados Unidos) registra
+            automáticamente datos técnicos de cada visita, como la dirección IP, el navegador y la fecha de acceso, con
+            fines de seguridad y funcionamiento del sitio. No usamos esos datos para identificarte.
           </p>
         </section>
 
@@ -80,7 +85,13 @@ export default function PrivacidadPage() {
             >
               argentina.gob.ar/aaip
             </a>
-            ).
+            ). El derecho de acceso puede ejercerse en forma gratuita a intervalos no inferiores a seis meses, salvo que
+            se acredite un interés legítimo al efecto (art. 14, inc. 3, Ley 25.326).
+          </p>
+          <p className="mt-4 rounded-xl border border-white/[0.08] bg-white/[0.02] p-4 text-sm text-foreground/70">
+            LA AGENCIA DE ACCESO A LA INFORMACIÓN PÚBLICA, en su carácter de Órgano de Control de la Ley N° 25.326,
+            tiene la atribución de atender las denuncias y reclamos que interpongan quienes resulten afectados en sus
+            derechos por incumplimiento de las normas vigentes en materia de protección de datos personales.
           </p>
         </section>
       </div>

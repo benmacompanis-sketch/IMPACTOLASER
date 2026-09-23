@@ -12,7 +12,8 @@ export const site = {
   slogan: "Limpieza y restauración sin dañar superficies",
   description:
     "Limpieza laser de alta precisión: removemos pintura, óxido, grasa y contaminantes sin agua, sin químicos y sin abrasivos. Tecnología industrial que respeta la superficie original.",
-  url: "https://impactolaser.com",
+  // Cambiar a "https://impactolaser.com" solo si se compra ese dominio.
+  url: "https://impactolaser.vercel.app",
   // WhatsApp / teléfono: +54 9 11 5876-1471 (formato internacional para wa.me)
   whatsapp: "5491158761471",
   whatsappDisplay: "+54 11 5876-1471",

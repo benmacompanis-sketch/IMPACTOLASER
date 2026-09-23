@@ -160,36 +160,9 @@ export type Testimonial = {
   initials: string;
 };
 
-export const testimonials: Testimonial[] = [
-  {
-    quote:
-      "Recuperaron la fachada de piedra de nuestro edificio histórico sin un solo rasguño. El resultado parece imposible.",
-    author: "Administración Belgrano",
-    role: "Consorcio · Restauración de fachada",
-    initials: "AB",
-  },
-  {
-    quote:
-      "Limpiamos un lote completo de autopartes de fundición. Cero abrasión, cero residuos y una precisión que ningún químico nos había dado.",
-    author: "Taller Mecánico Sur",
-    role: "Industria · Restauración de motores",
-    initials: "TS",
-  },
-  {
-    quote:
-      "Quitaron grafitis de un monumento protegido respetando la pátina original. Patrimonio intacto, suciedad eliminada.",
-    author: "Dirección de Cultura",
-    role: "Patrimonio · Monumento urbano",
-    initials: "DC",
-  },
-  {
-    quote:
-      "La parrilla y el hogar a leña quedaron como nuevos, sin desarmar nada y sin productos tóxicos en casa.",
-    author: "Familia Ortega",
-    role: "Hogar · Parrilla y hogar a leña",
-    initials: "FO",
-  },
-];
+// Solo testimonios reales, textuales y con permiso escrito del cliente.
+// Mientras esta lista esté vacía, la sección no se muestra.
+export const testimonials: Testimonial[] = [];
 
 /* ── FAQ ── */
 export type Faq = { question: string; answer: string };
