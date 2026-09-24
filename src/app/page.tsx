@@ -28,13 +28,6 @@ export default function Home() {
     <>
       <Intro onComplete={handleStart} />
 
-      <a
-        href="#inicio"
-        className="sr-only max-md:hidden focus-visible:not-sr-only focus-visible:fixed focus-visible:left-4 focus-visible:top-4 focus-visible:z-[200] focus-visible:rounded-lg focus-visible:bg-laser-600 focus-visible:px-4 focus-visible:py-2 focus-visible:text-white"
-      >
-        Saltar al contenido
-      </a>
-
       <Navbar started={started} />
 
       <main className="relative">
