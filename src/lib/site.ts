@@ -29,7 +29,7 @@ export const site = {
    * También se puede definir NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION en Vercel,
    * que tiene prioridad sobre este valor.
    */
-  googleVerification: "",
+  googleVerification: "H2qgV2Or8utfae2H4HFJdiJIIulQTThvaZYLrBZAxgw",
 } as const;
 
 export type SocialKey = "instagram" | "tiktok" | "youtube" | "facebook";
