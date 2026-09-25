@@ -21,6 +21,15 @@ export const site = {
   phoneDisplay: "11 5876-1471",
   email: "impactolaser.arg@gmail.com",
   location: "Buenos Aires · Argentina",
+  /**
+   * Código de verificación de Google Search Console (método "Etiqueta HTML").
+   * Search Console entrega algo como:
+   *   <meta name="google-site-verification" content="AbC123..." />
+   * Acá va SÓLO el valor de content, sin la etiqueta.
+   * También se puede definir NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION en Vercel,
+   * que tiene prioridad sobre este valor.
+   */
+  googleVerification: "",
 } as const;
 
 export type SocialKey = "instagram" | "tiktok" | "youtube" | "facebook";
