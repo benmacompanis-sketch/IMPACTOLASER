@@ -1,3 +1,4 @@
+import type React from "react";
 import type { SVGProps } from "react";
 
 import type { SocialKey } from "@/lib/site";
@@ -50,7 +51,7 @@ export function FacebookIcon(props: IconProps) {
   );
 }
 
-export const socialIconMap: Record<SocialKey, (props: IconProps) => JSX.Element> = {
+export const socialIconMap: Record<SocialKey, (props: IconProps) => React.JSX.Element> = {
   instagram: InstagramIcon,
   tiktok: TiktokIcon,
   youtube: YoutubeIcon,

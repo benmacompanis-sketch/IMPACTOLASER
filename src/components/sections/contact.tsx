@@ -1,5 +1,7 @@
 "use client";
 
+import type React from "react";
+
 import { useEffect, useState } from "react";
 import { Mail, Phone, ArrowUpRight, type LucideIcon } from "lucide-react";
 
@@ -17,7 +19,7 @@ type Method = {
   value: string;
   href: string;
   soon: boolean;
-  Icon: LucideIcon | ((props: { className?: string }) => JSX.Element);
+  Icon: LucideIcon | ((props: { className?: string }) => React.JSX.Element);
 };
 
 const methods: Method[] = [

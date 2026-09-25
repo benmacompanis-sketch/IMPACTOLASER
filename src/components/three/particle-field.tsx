@@ -77,8 +77,8 @@ function GlowParticles({
   return (
     <points>
       <bufferGeometry>
-        <bufferAttribute attach="attributes-position" count={count} array={positions} itemSize={3} />
-        <bufferAttribute attach="attributes-aSeed" count={count} array={seeds} itemSize={1} />
+        <bufferAttribute attach="attributes-position" args={[positions, 3]} />
+        <bufferAttribute attach="attributes-aSeed" args={[seeds, 1]} />
       </bufferGeometry>
       <shaderMaterial
         ref={materialRef}
@@ -241,15 +241,15 @@ function Constellation({
     <group>
       <lineSegments ref={linesRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" count={maxLineVerts} array={data.linePositions} itemSize={3} />
-          <bufferAttribute attach="attributes-color" count={maxLineVerts} array={data.lineColors} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[data.linePositions, 3]} />
+          <bufferAttribute attach="attributes-color" args={[data.lineColors, 3]} />
         </bufferGeometry>
         <lineBasicMaterial vertexColors transparent depthWrite={false} blending={THREE.AdditiveBlending} opacity={0.6} />
       </lineSegments>
 
       <points ref={pointsRef}>
         <bufferGeometry>
-          <bufferAttribute attach="attributes-position" count={count} array={data.display} itemSize={3} />
+          <bufferAttribute attach="attributes-position" args={[data.display, 3]} />
         </bufferGeometry>
         <pointsMaterial color="#9ec8ff" size={0.06} sizeAttenuation transparent depthWrite={false} opacity={0.9} blending={THREE.AdditiveBlending} />
       </points>
