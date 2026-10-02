@@ -201,14 +201,18 @@ function Constellation({
     // links between nearby display nodes
     let v = 0;
     const maxDist = 3.4;
+    // Se compara la distancia AL CUADRADO: así la raíz cuadrada se calcula sólo
+    // para los pares que de verdad forman línea (~200) en vez de para los 2.415
+    // pares posibles. El resultado dibujado es idéntico.
+    const maxDistSq = maxDist * maxDist;
     for (let i = 0; i < count; i++) {
       for (let j = i + 1; j < count; j++) {
         const dx = display[i * 3] - display[j * 3];
         const dy = display[i * 3 + 1] - display[j * 3 + 1];
         const dz = display[i * 3 + 2] - display[j * 3 + 2];
-        const dist = Math.sqrt(dx * dx + dy * dy + dz * dz);
-        if (dist < maxDist) {
-          const a = 1 - dist / maxDist;
+        const distSq = dx * dx + dy * dy + dz * dz;
+        if (distSq < maxDistSq) {
+          const a = 1 - Math.sqrt(distSq) / maxDist;
           linePositions[v * 3] = display[i * 3];
           linePositions[v * 3 + 1] = display[i * 3 + 1];
           linePositions[v * 3 + 2] = display[i * 3 + 2];
@@ -228,8 +232,17 @@ function Constellation({
     if (linesRef.current) {
       const geo = linesRef.current.geometry as THREE.BufferGeometry;
       geo.setDrawRange(0, v);
-      (geo.attributes.position as THREE.BufferAttribute).needsUpdate = true;
-      (geo.attributes.color as THREE.BufferAttribute).needsUpdate = true;
+      // Sin acotar el rango, marcar needsUpdate reenvía TODO el buffer a la
+      // placa de video en cada frame (9.800 vértices) aunque se dibujen unos
+      // pocos cientos. Acá se sube sólo lo que realmente se usa.
+      const pos = geo.attributes.position as THREE.BufferAttribute;
+      const col = geo.attributes.color as THREE.BufferAttribute;
+      pos.clearUpdateRanges();
+      pos.addUpdateRange(0, v * 3);
+      pos.needsUpdate = true;
+      col.clearUpdateRanges();
+      col.addUpdateRange(0, v * 3);
+      col.needsUpdate = true;
     }
     if (pointsRef.current) {
       const geo = pointsRef.current.geometry as THREE.BufferGeometry;
