@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { PerformanceMonitor } from "@react-three/drei";
 
@@ -27,6 +27,12 @@ export default function WebglBackground({ tier = "high" }: { tier?: PerfTier }) 
   const cfg = QUALITY[tier];
   const [dpr, setDpr] = useState<number>(cfg.dpr);
 
+  // Cuánto del campo de partículas se dibuja. Lo mueve el medidor de FPS real:
+  // si la máquina sostiene el ritmo queda en 1 (todo), y si no va bajando. Es un
+  // ref y no estado para que cambiarlo no vuelva a montar la escena: los buffers
+  // siguen siendo los mismos y la transición no se nota.
+  const scaleRef = useRef(1);
+
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10">
       <Canvas
@@ -38,12 +44,21 @@ export default function WebglBackground({ tier = "high" }: { tier?: PerfTier }) 
         <fog attach="fog" args={["#04060d", 9, 22]} />
         <PerformanceMonitor
           flipflops={3}
-          onIncline={() => setDpr(cfg.ceil)}
-          onDecline={() => setDpr(cfg.declineDpr)}
-          onFallback={() => setDpr(0.85)}
+          onIncline={() => {
+            setDpr(cfg.ceil);
+            scaleRef.current = 1;
+          }}
+          onDecline={() => {
+            setDpr(cfg.declineDpr);
+            scaleRef.current = 0.62;
+          }}
+          onFallback={() => {
+            setDpr(0.85);
+            scaleRef.current = 0.42;
+          }}
         />
         <Suspense fallback={null}>
-          <ParticleField quality={cfg.quality} />
+          <ParticleField quality={cfg.quality} scaleRef={scaleRef} />
         </Suspense>
       </Canvas>
       {/* Tenue resplandor superior. Antes tenía un corte (radial que terminaba

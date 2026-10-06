@@ -36,11 +36,14 @@ const FAR_AWAY = new THREE.Vector3(99999, 99999, 0);
 function GlowParticles({
   count,
   mouseRef,
+  scaleRef,
 }: {
   count: number;
   mouseRef: MutableRefObject<THREE.Vector3>;
+  scaleRef: MutableRefObject<number>;
 }) {
   const materialRef = useRef<THREE.ShaderMaterial>(null);
+  const pointsRef = useRef<THREE.Points>(null);
 
   const { positions, seeds } = useMemo(() => {
     const positions = new Float32Array(count * 3);
@@ -72,10 +75,16 @@ function GlowParticles({
       materialRef.current.uniforms.uTime.value = state.clock.elapsedTime;
       materialRef.current.uniforms.uMouse.value.copy(mouseRef.current);
     }
+    // Se dibujan menos partículas si la máquina no llega, pero el buffer sigue
+    // siendo el mismo: no hay que reservar memoria de nuevo ni se reordenan las
+    // posiciones, así que el cambio no se ve como un salto.
+    if (pointsRef.current) {
+      pointsRef.current.geometry.setDrawRange(0, Math.max(150, Math.round(count * scaleRef.current)));
+    }
   });
 
   return (
-    <points>
+    <points ref={pointsRef}>
       <bufferGeometry>
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         <bufferAttribute attach="attributes-aSeed" args={[seeds, 1]} />
@@ -139,9 +148,11 @@ function GlowParticles({
 function Constellation({
   count,
   mouseRef,
+  scaleRef,
 }: {
   count: number;
   mouseRef: MutableRefObject<THREE.Vector3>;
+  scaleRef: MutableRefObject<number>;
 }) {
   const linesRef = useRef<THREE.LineSegments>(null);
   const pointsRef = useRef<THREE.Points>(null);
@@ -176,8 +187,14 @@ function Constellation({
     const repelR = 3.6;
     const repelStrength = 1.7;
 
+    // Cuántos nodos se usan realmente este frame. El costo de las líneas crece
+    // con el CUADRADO de este número (cada nodo se compara contra todos los
+    // demás), así que bajarlo un poco alivia muchísimo. Los nodos sobrantes
+    // simplemente dejan de integrarse y de dibujarse.
+    const activos = Math.max(22, Math.round(count * scaleRef.current));
+
     // integrate base positions + bounce
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < activos; i++) {
       const ix = i * 3;
       nodes[ix] += velocities[ix] * dt * 60 * 0.016;
       nodes[ix + 1] += velocities[ix + 1] * dt * 60 * 0.016;
@@ -205,8 +222,8 @@ function Constellation({
     // para los pares que de verdad forman línea (~200) en vez de para los 2.415
     // pares posibles. El resultado dibujado es idéntico.
     const maxDistSq = maxDist * maxDist;
-    for (let i = 0; i < count; i++) {
-      for (let j = i + 1; j < count; j++) {
+    for (let i = 0; i < activos; i++) {
+      for (let j = i + 1; j < activos; j++) {
         const dx = display[i * 3] - display[j * 3];
         const dy = display[i * 3 + 1] - display[j * 3 + 1];
         const dz = display[i * 3 + 2] - display[j * 3 + 2];
@@ -246,7 +263,11 @@ function Constellation({
     }
     if (pointsRef.current) {
       const geo = pointsRef.current.geometry as THREE.BufferGeometry;
-      (geo.attributes.position as THREE.BufferAttribute).needsUpdate = true;
+      geo.setDrawRange(0, activos);
+      const pts = geo.attributes.position as THREE.BufferAttribute;
+      pts.clearUpdateRanges();
+      pts.addUpdateRange(0, activos * 3);
+      pts.needsUpdate = true;
     }
   });
 
@@ -315,7 +336,13 @@ function Rig({
   return <group ref={group}>{children}</group>;
 }
 
-export function ParticleField({ quality = "high" }: { quality?: "high" | "medium" | "low" }) {
+export function ParticleField({
+  quality = "high",
+  scaleRef,
+}: {
+  quality?: "high" | "medium" | "low";
+  scaleRef: MutableRefObject<number>;
+}) {
   const particleCount = quality === "high" ? 1000 : quality === "medium" ? 620 : 380;
   const nodeCount = quality === "high" ? 70 : quality === "medium" ? 48 : 38;
 
@@ -324,8 +351,8 @@ export function ParticleField({ quality = "high" }: { quality?: "high" | "medium
 
   return (
     <Rig mouseNdc={mouseNdc} mouseLocal={mouseLocal}>
-      <GlowParticles count={particleCount} mouseRef={mouseLocal} />
-      <Constellation count={nodeCount} mouseRef={mouseLocal} />
+      <GlowParticles count={particleCount} mouseRef={mouseLocal} scaleRef={scaleRef} />
+      <Constellation count={nodeCount} mouseRef={mouseLocal} scaleRef={scaleRef} />
     </Rig>
   );
 }
