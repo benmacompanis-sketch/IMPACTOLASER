@@ -4,6 +4,7 @@ import { Fragment } from "react";
 import { motion, type Variants } from "framer-motion";
 
 import { cn } from "@/lib/utils";
+import { REVEAL_VIEWPORT_MARGIN } from "@/lib/motion";
 
 interface TextRevealProps {
   text: string;
@@ -23,7 +24,7 @@ export function TextReveal({
   text,
   className,
   delay = 0,
-  stagger = 0.07,
+  stagger = 0.045,
   once = true,
 }: TextRevealProps) {
   const words = text.split(" ");
@@ -41,7 +42,7 @@ export function TextReveal({
       y: "0%",
       opacity: 1,
       rotateX: 0,
-      transition: { duration: 0.85, ease: [0.16, 1, 0.3, 1] },
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
     },
   };
 
@@ -51,7 +52,7 @@ export function TextReveal({
       variants={container}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once, margin: "-60px" }}
+      viewport={{ once, margin: REVEAL_VIEWPORT_MARGIN }}
       aria-label={text}
     >
       {words.map((w, i) => (

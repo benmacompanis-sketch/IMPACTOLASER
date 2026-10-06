@@ -7,10 +7,11 @@ import { Section } from "@/components/shared/section";
 import { Reveal } from "@/components/effects/reveal";
 import { isTouchDevice, prefersReducedMotion } from "@/lib/performance";
 import { stats, type Stat } from "@/lib/data";
+import { REVEAL_VIEWPORT_MARGIN } from "@/lib/motion";
 
 function Counter({ stat }: { stat: Stat }) {
   const ref = useRef<HTMLSpanElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-60px" });
+  const inView = useInView(ref, { once: true, margin: REVEAL_VIEWPORT_MARGIN });
   // Render the real number from the server so phones show the right value
   // immediately, without waiting for the JS bundle to hydrate.
   const [value, setValue] = useState(stat.value);
@@ -64,7 +65,7 @@ export function Stats() {
                     style={{ "--w": `${stat.value}%` } as React.CSSProperties}
                     initial={{ width: "0%" }}
                     whileInView={{ width: `${stat.value}%` }}
-                    viewport={{ once: true, margin: "-60px" }}
+                    viewport={{ once: true, margin: REVEAL_VIEWPORT_MARGIN }}
                     transition={{ duration: 1.6, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
                   />
                 </div>

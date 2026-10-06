@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/effects/reveal";
 import { TiltCard } from "@/components/effects/tilt-card";
 import { surfaceGroups } from "@/lib/data";
+import { REVEAL_VIEWPORT_MARGIN } from "@/lib/motion";
 
 const groupIcon = [Layers, Hammer, Boxes];
 
@@ -49,7 +50,7 @@ export function Surfaces() {
                     variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.045 } } }}
                     initial="hidden"
                     whileInView="visible"
-                    viewport={{ once: true, margin: "-40px" }}
+                    viewport={{ once: true, margin: REVEAL_VIEWPORT_MARGIN }}
                   >
                     {group.items.map((item) => (
                       <motion.span

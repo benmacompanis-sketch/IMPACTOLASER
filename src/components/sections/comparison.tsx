@@ -8,6 +8,7 @@ import { SectionHeading } from "@/components/shared/section-heading";
 import { Reveal } from "@/components/effects/reveal";
 import { TiltCard } from "@/components/effects/tilt-card";
 import { comparison } from "@/lib/data";
+import { REVEAL_VIEWPORT_MARGIN } from "@/lib/motion";
 
 const listContainer: Variants = {
   hidden: {},
@@ -49,7 +50,7 @@ export function Comparison() {
                 variants={listContainer}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-60px" }}
+                viewport={{ once: true, margin: REVEAL_VIEWPORT_MARGIN }}
               >
                 {comparison.traditional.points.map((p) => (
                   <motion.li
@@ -107,7 +108,7 @@ export function Comparison() {
                 variants={listContainer}
                 initial="hidden"
                 whileInView="visible"
-                viewport={{ once: true, margin: "-60px" }}
+                viewport={{ once: true, margin: REVEAL_VIEWPORT_MARGIN }}
               >
                 {comparison.laser.points.map((p) => (
                   <motion.li

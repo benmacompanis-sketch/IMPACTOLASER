@@ -8,6 +8,7 @@ import { Section } from "@/components/shared/section";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { RevealChild, RevealGroup } from "@/components/effects/reveal";
 import { processSteps } from "@/lib/data";
+import { REVEAL_VIEWPORT_MARGIN } from "@/lib/motion";
 
 const stepIcons: LucideIcon[] = [ScanSearch, SlidersHorizontal, Zap, BadgeCheck];
 
@@ -54,7 +55,7 @@ export function Process() {
                   <motion.div
                     initial={{ scale: 0.3, rotate: -25, opacity: 0 }}
                     whileInView={{ scale: 1, rotate: 0, opacity: 1 }}
-                    viewport={{ once: true, margin: "-60px" }}
+                    viewport={{ once: true, margin: REVEAL_VIEWPORT_MARGIN }}
                     transition={{ type: "spring", stiffness: 220, damping: 16, delay: i * 0.12 }}
                     className="m-show relative z-10 flex size-14 shrink-0 items-center justify-center rounded-2xl border border-laser-500/30 bg-ink-700 text-laser-200 shadow-glow-sm transition-all duration-500 group-hover:scale-105 group-hover:text-white group-hover:shadow-glow"
                   >
