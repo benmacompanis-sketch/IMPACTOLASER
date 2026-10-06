@@ -468,7 +468,7 @@
 @keyframes intro-head-m {
   0%,
   6% {
-    left: 0%;
+    transform: translate(-50%, -50%);
     opacity: 0;
     animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
   }
@@ -477,12 +477,12 @@
     animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
   }
   31% {
-    left: 100%;
+    transform: translate(calc(100vw - 50%), -50%);
     opacity: 1;
   }
   35%,
   100% {
-    left: 100%;
+    transform: translate(calc(100vw - 50%), -50%);
     opacity: 0;
   }
 }
@@ -640,11 +640,19 @@
   }
 }
 
-/* la cabeza del laser va adelante del haz */
+/* La cabeza del laser va adelante del haz.
+   Se mueve con transform y NO con left. Durante la intro el navegador está
+   cargando y armando toda la web, y el hilo principal sólo llega a producir
+   5-6 frames en el segundo que dura el barrido. Lo que se anima con left
+   depende de ese hilo, así que el punto saltaba hasta un tercio de la pantalla
+   de un frame a otro. transform y opacity los mueve la placa de video en su
+   propio hilo, ajeno a la carga: igual que el haz, que ya era fluido.
+   El -50% mantiene el punto centrado; 100vw es el ancho del contenedor del haz
+   (la barra de scroll está oculta en todo el sitio). */
 @keyframes intro-head {
   0%,
   18.6% {
-    left: 0%;
+    transform: translate(-50%, -50%);
     opacity: 0;
     animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
   }
@@ -653,12 +661,12 @@
     animation-timing-function: cubic-bezier(0.45, 0, 0.55, 1);
   }
   39.2% {
-    left: 100%;
+    transform: translate(calc(100vw - 50%), -50%);
     opacity: 1;
   }
   41.2%,
   100% {
-    left: 100%;
+    transform: translate(calc(100vw - 50%), -50%);
     opacity: 0;
   }
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import dynamic from "next/dynamic";
 
 import {
@@ -12,7 +12,8 @@ import {
 } from "@/lib/performance";
 
 // three.js only ships to desktop, where this actually renders.
-const WebglBackground = dynamic(() => import("./webgl-background"), { ssr: false });
+const loadWebgl = () => import("./webgl-background");
+const WebglBackground = dynamic(loadWebgl, { ssr: false });
 
 const BASE_GRADIENT =
   "radial-gradient(75% 55% at 50% 0%, rgba(47,139,255,0.16), transparent 60%), radial-gradient(45% 35% at 82% 28%, rgba(47,139,255,0.07), transparent 60%), #04060d";
@@ -91,6 +92,34 @@ function CssBackground({ tier }: { tier: PerfTier }) {
 }
 
 /**
+ * Devuelve true cuando ya terminó el barrido del laser de la intro.
+ *
+ * Arrancar el fondo 3D implica compilar sus programas gráficos y subir sus
+ * datos a la placa de video, y eso caía justo durante el barrido: el mismo
+ * momento en que la placa está moviendo el laser. Como la intro tapa el fondo
+ * por completo, demorarlo no se ve, y le quedan ~2s para estar listo antes de
+ * que la intro se disuelva. Si la intro ya no está (JS que llegó tarde, o
+ * reduced-motion), arranca de inmediato.
+ */
+function useAfterLaserSweep() {
+  const [listo, setListo] = useState(false);
+  useEffect(() => {
+    const anim = document.querySelector(".intro-head")?.getAnimations?.()[0];
+    if (!anim) {
+      setListo(true);
+      return;
+    }
+    const duracion = Number(anim.effect?.getComputedTiming?.().duration) || 0;
+    const ahora = Number(anim.currentTime) || 0;
+    // El punto del laser se apaga al 41.2% del timeline de desktop
+    // (ver @keyframes intro-head en globals.css).
+    const t = window.setTimeout(() => setListo(true), Math.max(0, duracion * 0.42 - ahora));
+    return () => window.clearTimeout(t);
+  }, []);
+  return listo;
+}
+
+/**
  * Fixed, full-viewport backdrop behind all content. Loaded with `ssr:false`, so
  * reading matchMedia/navigator in the lazy initialiser is safe.
  *  - reduced-motion → static gradient
@@ -104,8 +133,18 @@ export function SceneBackground() {
     return isTouchDevice() ? "css" : "webgl";
   });
   const [tier] = useState<PerfTier>(() => detectTier());
+  const barridoTerminado = useAfterLaserSweep();
+
+  // Dos etapas separadas a propósito. Bajar y parsear three.js es trabajo del
+  // procesador y arranca ya, para que esté listo a tiempo aunque la máquina
+  // sea lenta. Lo que se demora hasta después del barrido es sólo montar la
+  // escena (crear el contexto WebGL, compilar shaders, subir buffers), que es
+  // lo que ocupa a la placa de video.
+  useEffect(() => {
+    if (mode === "webgl") void loadWebgl();
+  }, [mode]);
 
   if (mode === "static") return <StaticBackground />;
   if (mode === "css") return <CssBackground tier={tier} />;
-  return <WebglBackground tier={tier} />;
+  return barridoTerminado ? <WebglBackground tier={tier} /> : null;
 }
