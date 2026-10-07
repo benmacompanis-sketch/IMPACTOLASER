@@ -9,11 +9,24 @@ import {
   Sparkles,
   Hand,
   Trash2,
-  Wind,
+  Gauge,
   ShieldCheck,
   Crosshair,
   type LucideIcon,
 } from "lucide-react";
+
+/*
+ * Afirmaciones revisadas con el dueño (oct 2026). Lo que dice la publicidad
+ * pasa a formar parte de la oferta (Ley 24.240, art. 8), así que no volver a
+ * poner sin consultarlo:
+ *  - "Sin residuos" a secas: el laser vaporiza el contaminante y eso hace
+ *    humo. Lo cierto es que no deja residuos secundarios (arena, barro, agua).
+ *  - "Sin polvo": se ve humo, y no siempre se trabaja con aspiración.
+ *  - "No tóxico": no se usan químicos, pero el humo no se debe respirar.
+ *  - "100% respeto por la superficie": no daña porque siempre se arranca con
+ *    pruebas a baja energía (clave en superficies delicadas como la madera),
+ *    pero un 100% se lee como garantía.
+ */
 
 /* ── Tecnología: beneficios clave ── */
 export type Benefit = { icon: LucideIcon; label: string };
@@ -23,8 +36,8 @@ export const benefits: Benefit[] = [
   { icon: FlaskConical, label: "Sin químicos" },
   { icon: Sparkles, label: "Sin abrasivos" },
   { icon: Hand, label: "Sin contacto físico" },
-  { icon: Trash2, label: "Sin residuos" },
-  { icon: Wind, label: "Sin polvo" },
+  { icon: Trash2, label: "Sin residuos secundarios" },
+  { icon: Gauge, label: "Prueba previa a baja energía" },
   { icon: ShieldCheck, label: "Conserva la superficie original" },
   { icon: Crosshair, label: "Máxima precisión" },
 ];
@@ -97,7 +110,7 @@ export const applications: Application[] = [
 export const comparison = {
   traditional: {
     title: "Métodos tradicionales",
-    points: ["Agua", "Químicos", "Lijas", "Abrasión", "Polvo", "Residuos", "Daño potencial"],
+    points: ["Agua", "Químicos", "Lijas", "Abrasión", "Polvo abrasivo", "Residuos", "Daño potencial"],
   },
   laser: {
     title: "Limpieza Laser",
@@ -106,7 +119,7 @@ export const comparison = {
       "Sin contacto",
       "Sin desgaste",
       "Sin químicos",
-      "Sin residuos",
+      "Sin residuos secundarios",
       "Conserva la superficie original",
     ],
   },
@@ -116,7 +129,7 @@ export const comparison = {
 export type Stat = { value: number; suffix: string; label: string };
 
 export const stats: Stat[] = [
-  { value: 100, suffix: "%", label: "Respeto por la superficie original" },
+  { value: 100, suffix: "%", label: "Proceso en seco" },
   { value: 0, suffix: "%", label: "Químicos" },
   { value: 0, suffix: "%", label: "Abrasivos" },
   { value: 100, suffix: "%", label: "Precisión controlada" },
@@ -136,7 +149,7 @@ export const processSteps: ProcessStep[] = [
     step: "02",
     title: "Análisis",
     description:
-      "Definimos la longitud de onda, potencia y parámetros del laser para cada material específico.",
+      "Definimos la longitud de onda, potencia y parámetros del laser para cada material, con una prueba previa a baja energía.",
   },
   {
     step: "03",
@@ -148,7 +161,7 @@ export const processSteps: ProcessStep[] = [
     step: "04",
     title: "Resultado final",
     description:
-      "Entregamos la superficie original recuperada, limpia, sin residuos ni daño estructural.",
+      "Entregamos la superficie original recuperada y limpia, sin restos de arena, agua ni químicos.",
   },
 ];
 
@@ -171,17 +184,22 @@ export const faqs: Faq[] = [
   {
     question: "¿La limpieza laser daña la superficie?",
     answer:
-      "No. El laser actúa únicamente sobre la capa contaminante que está por encima del material original. La energía está calibrada para vaporizar suciedad, óxido o pintura sin alterar el sustrato, por eso es el método elegido para patrimonio y piezas de alto valor.",
+      "No, si se calibra bien. Por eso siempre arrancamos con pruebas a baja energía y ajustamos hasta sacar la suciedad, el óxido o la pintura sin marcar el material de abajo. En superficies delicadas, como la madera, esa prueba es clave. Por esa precisión se usa en patrimonio y piezas de alto valor.",
   },
   {
     question: "¿Utiliza químicos?",
     answer:
-      "Ninguno. Es un proceso 100% en seco: sin agua, sin solventes y sin detergentes. No hay productos tóxicos involucrados ni en el proceso ni en el resultado.",
+      "Ninguno. Es un proceso 100% en seco: sin agua, sin solventes y sin detergentes.",
   },
   {
     question: "¿Genera residuos?",
     answer:
-      "Prácticamente no. El contaminante se convierte en partículas que captamos por aspiración. No quedan barros, no hay desechos líquidos ni polvo abrasivo disperso.",
+      "Mucho menos que los métodos tradicionales. No deja residuos secundarios: no hay arena, barro ni líquidos para juntar después, como pasa con el arenado o los químicos. Lo que sí se ve es humo, porque el laser vaporiza el óxido o la pintura que elimina.",
+  },
+  {
+    question: "¿Hay que tomar alguna precaución mientras trabajan?",
+    answer:
+      "Sí. El humo que se genera al vaporizar óxido o pintura no se debe respirar. Por eso trabajamos con máscara y recomendamos que nadie se quede al lado mientras dura la limpieza.",
   },
   {
     question: "¿Qué materiales pueden limpiarse?",
