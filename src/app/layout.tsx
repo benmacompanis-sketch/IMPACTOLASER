@@ -62,6 +62,10 @@ export const metadata: Metadata = {
   applicationName: site.name,
   category: "technology",
   alternates: { canonical: "/" },
+  // La imagen para compartir es src/app/opengraph-image.jpg: Next la toma
+  // sola por el nombre y la usa también para X (twitter:image). Se regenera
+  // con scripts/make-og-image.mjs. Antes era un SVG, que WhatsApp y Facebook
+  // no muestran.
   openGraph: {
     type: "website",
     locale: "es_AR",
@@ -69,13 +73,11 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: `${site.name} — Limpieza laser de alta precisión`,
     description: site.description,
-    images: [{ url: "/logo.svg", width: 1280, height: 480, alt: site.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${site.name} — Limpieza laser de alta precisión`,
     description: site.description,
-    images: ["/logo.svg"],
   },
   robots: {
     index: true,
@@ -97,7 +99,7 @@ const jsonLd = {
   description: site.description,
   url: site.url,
   email: site.email,
-  image: `${site.url}/logo.svg`,
+  image: `${site.url}/logo.jpg`,
   slogan: site.slogan,
   areaServed: "AR",
   knowsAbout: [
