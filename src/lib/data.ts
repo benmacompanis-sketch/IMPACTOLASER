@@ -26,6 +26,7 @@ import {
  *  - "100% respeto por la superficie": no daña porque siempre se arranca con
  *    pruebas a baja energía (clave en superficies delicadas como la madera),
  *    pero un 100% se lee como garantía.
+ * Confirmado, se puede decir: la máquina permite cambiar la longitud de onda.
  */
 
 /* ── Tecnología: beneficios clave ── */
