@@ -23,7 +23,7 @@ export function Applications() {
       <SectionHeading
         eyebrow="Aplicaciones"
         title="De monumentos históricos a motores"
-        description="Una misma tecnología, infinitos escenarios. La limpieza laser se adapta al patrimonio, la arquitectura, el hogar y la industria pesada."
+        description="La limpieza laser sirve para patrimonio, arquitectura, el hogar y la industria pesada."
       />
 
       <RevealGroup
@@ -38,7 +38,7 @@ export function Applications() {
                 <div className="group relative flex h-full flex-col justify-between overflow-hidden rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5 transition-colors duration-500 hover:border-laser-500/40 hover:bg-laser-500/[0.05]">
                   <Icon className="size-6 text-laser-300/80 transition-all duration-500 group-hover:scale-110 group-hover:text-white" />
                   <div className="mt-10">
-                    <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-laser-300/50">
+                    <span className="text-[10px] font-medium uppercase tracking-[0.2em] text-laser-300/80">
                       {app.group}
                     </span>
                     <h3 className="mt-1 text-base font-medium leading-snug text-foreground/90 group-hover:text-white">

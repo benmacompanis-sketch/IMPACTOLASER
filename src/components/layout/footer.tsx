@@ -72,16 +72,16 @@ export function Footer() {
 
           {/* Nav */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/50">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/50">
               Navegación
-            </h4>
-            <ul className="mt-5 space-y-3">
+            </h3>
+            <ul className="mt-5 space-y-1 lg:space-y-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
                     onClick={(e) => handleNav(e, link.href)}
-                    className="text-sm text-muted-foreground transition-colors hover:text-laser-200"
+                    className="flex min-h-11 items-center text-sm text-muted-foreground transition-colors hover:text-laser-200 lg:min-h-0"
                   >
                     {link.label}
                   </a>
@@ -92,16 +92,16 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h4 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/50">
+            <h3 className="text-xs font-semibold uppercase tracking-[0.2em] text-foreground/50">
               Contacto
-            </h4>
-            <ul className="mt-5 space-y-3">
+            </h3>
+            <ul className="mt-5 space-y-1 lg:space-y-3">
               <li>
                 <a
                   href={presupuestoHref}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-laser-200"
+                  className="group flex min-h-11 items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-laser-200 lg:min-h-0"
                 >
                   <MessageCircle className="size-4 text-laser-300/70" />
                   WhatsApp · Solicitar presupuesto
@@ -110,7 +110,7 @@ export function Footer() {
               <li>
                 <a
                   href={`tel:${site.phone}`}
-                  className="flex items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-laser-200"
+                  className="flex min-h-11 items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-laser-200 lg:min-h-0"
                 >
                   <Phone className="size-4 text-laser-300/70" />
                   {site.phoneDisplay}
@@ -119,7 +119,7 @@ export function Footer() {
               <li>
                 <a
                   href={`mailto:${site.email}`}
-                  className="flex items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-laser-200"
+                  className="flex min-h-11 items-center gap-2.5 text-sm text-muted-foreground transition-colors hover:text-laser-200 lg:min-h-0"
                 >
                   <Mail className="size-4 text-laser-300/70" />
                   {site.email}
@@ -139,13 +139,13 @@ export function Footer() {
             © {new Date().getFullYear()} {site.name}. Todos los derechos reservados.
           </p>
             <div className="flex gap-4 text-xs text-muted-foreground">
-              <Link href="/privacidad" className="transition-colors hover:text-laser-200">Política de privacidad</Link>
-              <Link href="/aviso-legal" className="transition-colors hover:text-laser-200">Aviso legal</Link>
+              <Link href="/privacidad" className="inline-flex min-h-11 items-center transition-colors hover:text-laser-200 lg:min-h-0">Política de privacidad</Link>
+              <Link href="/aviso-legal" className="inline-flex min-h-11 items-center transition-colors hover:text-laser-200 lg:min-h-0">Aviso legal</Link>
             </div>
           </div>
           <button
             onClick={toTop}
-            className="group flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-laser-200"
+            className="group flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-laser-200"
           >
             Volver arriba
             <span className="flex size-8 items-center justify-center rounded-full border border-white/10 transition-all group-hover:border-laser-400/50 group-hover:shadow-glow-sm">
@@ -162,7 +162,7 @@ export function Footer() {
           aria-label="Desarrollado por I.D.E.A Code — Innovación Digital para Empresas y Agencias"
           className="group flex flex-col items-center gap-2.5 border-t border-white/[0.06] py-7 text-center transition-colors duration-300 hover:bg-white/[0.02]"
         >
-          <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground/50">
+          <span className="text-[10px] font-medium uppercase tracking-[0.3em] text-muted-foreground/75">
             Desarrollado por
           </span>
           <span className="flex items-center gap-2">

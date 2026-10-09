@@ -19,7 +19,8 @@ import { cn } from "@/lib/utils";
  */
 export function WhatsappFloat({ active = false }: { active?: boolean }) {
   return (
-    <motion.div
+    <motion.aside
+      aria-label="Contacto por WhatsApp"
       initial={{ opacity: 0, scale: 0.6, y: 20 }}
       animate={
         active ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.6, y: 20 }
@@ -37,7 +38,7 @@ export function WhatsappFloat({ active = false }: { active?: boolean }) {
           rel="noopener noreferrer"
           aria-label={`Escribir a ${site.name} por WhatsApp`}
           data-cursor="hover"
-          className="group relative flex items-center gap-0 overflow-hidden rounded-full bg-[#1faa52] py-3.5 pl-3.5 pr-3.5 text-white shadow-[0_10px_40px_-8px_rgba(31,170,82,0.8)] transition-all duration-500 hover:pr-6"
+          className="group relative flex items-center gap-0 overflow-hidden rounded-full bg-[#1faa52] py-3.5 pl-3.5 pr-3.5 text-white shadow-[0_10px_40px_-8px_rgba(31,170,82,0.8)] transition-all duration-500 hover:bg-[#15803d] hover:pr-6"
         >
           {/* pulsing ring */}
           <span className="pointer-events-none absolute inset-0 rounded-full">
@@ -58,6 +59,6 @@ export function WhatsappFloat({ active = false }: { active?: boolean }) {
           </span>
         </a>
       </Magnetic>
-    </motion.div>
+    </motion.aside>
   );
 }

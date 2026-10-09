@@ -41,7 +41,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: {
-    default: `${site.name} — Limpieza laser de alta precisión`,
+    default: `${site.name} | Limpieza laser de alta precisión`,
     template: `%s · ${site.name}`,
   },
   description: site.description,
@@ -71,12 +71,12 @@ export const metadata: Metadata = {
     locale: "es_AR",
     url: site.url,
     siteName: site.name,
-    title: `${site.name} — Limpieza laser de alta precisión`,
+    title: `${site.name} | Limpieza laser de alta precisión`,
     description: site.description,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — Limpieza laser de alta precisión`,
+    title: `${site.name} | Limpieza laser de alta precisión`,
     description: site.description,
   },
   robots: {

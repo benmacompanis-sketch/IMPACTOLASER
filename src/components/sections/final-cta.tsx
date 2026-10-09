@@ -61,17 +61,16 @@ export function FinalCta() {
 
         <h2 className="mx-auto max-w-4xl font-display text-[clamp(2.2rem,6vw,4.5rem)] font-bold leading-[1.02] tracking-tight">
           <span>
-            <TextReveal text="¿LISTO PARA RECUPERAR" className="text-gradient" />
+            <TextReveal text="¿QUÉ SUPERFICIE" className="text-gradient" />
           </span>{" "}
           <span>
-            <TextReveal text="CUALQUIER SUPERFICIE?" delay={0.2} className="text-gradient-laser" />
+            <TextReveal text="QUERÉS RECUPERAR?" delay={0.2} className="text-gradient-laser" />
           </span>
         </h2>
 
         <Reveal delay={0.2}>
           <p className="mx-auto mt-7 max-w-xl text-lg text-muted-foreground">
-            Descubrí el potencial de la limpieza laser profesional. Contanos qué
-            superficie querés recuperar y te asesoramos sin compromiso.
+            Contanos cuál es y te asesoramos sin compromiso.
           </p>
         </Reveal>
 
@@ -99,7 +98,7 @@ export function FinalCta() {
           <motion.div className="mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-muted-foreground">
             <a
               href={`mailto:${site.email}`}
-              className="flex items-center gap-2 transition-colors hover:text-laser-200"
+              className="flex min-h-11 items-center gap-2 transition-colors hover:text-laser-200"
             >
               <Mail className="size-4 text-laser-300/70" />
               {site.email}

@@ -43,7 +43,7 @@ export function Logo({ variant = "mark", className, priority = false }: LogoProp
     <img
       src={sources[idx]}
       onError={() => setIdx((i) => Math.min(i + 1, sources.length - 1))}
-      alt={`${site.name} — ${site.slogan}`}
+      alt={`${site.name}: ${site.slogan}`}
       draggable={false}
       loading={priority ? "eager" : "lazy"}
       decoding="async"

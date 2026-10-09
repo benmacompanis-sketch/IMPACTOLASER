@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { MotionConfig } from "framer-motion";
 
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
 import { PerfProvider } from "@/components/providers/perf-provider";
@@ -14,13 +15,17 @@ const SceneBackground = dynamic(
 );
 
 export function AppProviders({ children }: { children: React.ReactNode }) {
+  // reducedMotion="user": si el sistema pide reducir movimiento, framer-motion
+  // deja sólo los fundidos y saca desplazamientos, giros y escalas.
   return (
-    <SmoothScrollProvider>
-      <PerfProvider />
-      <SceneBackground />
-      <CustomCursor />
-      <ScrollProgress />
-      {children}
-    </SmoothScrollProvider>
+    <MotionConfig reducedMotion="user">
+      <SmoothScrollProvider>
+        <PerfProvider />
+        <SceneBackground />
+        <CustomCursor />
+        <ScrollProgress />
+        {children}
+      </SmoothScrollProvider>
+    </MotionConfig>
   );
 }

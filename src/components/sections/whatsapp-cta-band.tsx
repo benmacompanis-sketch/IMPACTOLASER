@@ -24,10 +24,10 @@ export function WhatsappCtaBand() {
               </div>
               <div>
                 <h3 className="font-display text-2xl font-semibold text-white sm:text-3xl">
-                  Cada superficie tiene una segunda oportunidad.
+                  ¿Tenés algo para limpiar o restaurar?
                 </h3>
                 <p className="mt-2 text-sm text-muted-foreground sm:text-base">
-                  Contanos qué necesitás recuperar y te respondemos al instante por WhatsApp.
+                  Contanos qué necesitás recuperar y te respondemos por WhatsApp.
                 </p>
               </div>
             </div>

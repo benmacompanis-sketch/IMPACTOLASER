@@ -25,7 +25,7 @@ export function Process() {
       <SectionHeading
         eyebrow="El proceso"
         title="Cuatro pasos hacia el resultado"
-        description="Un método controlado de principio a fin, pensado para entregar la superficie original recuperada."
+        description="Así trabajamos desde la primera consulta hasta la entrega."
       />
 
       <div ref={ref} className="relative mt-20">
@@ -71,7 +71,7 @@ export function Process() {
                     )}
                   </motion.div>
                   <div className="lg:mt-7">
-                    <span className="font-mono text-xs tracking-[0.2em] text-laser-300/60">
+                    <span className="font-mono text-xs tracking-[0.2em] text-laser-300/80">
                       PASO {step.step}
                     </span>
                     <h3 className="mt-1 font-display text-xl font-semibold text-white">

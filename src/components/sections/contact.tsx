@@ -97,8 +97,8 @@ export function Contact() {
           </h2>
           <Reveal delay={0.2}>
             <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground sm:text-lg">
-              Solicitá una evaluación profesional y descubrí cómo la limpieza laser
-              puede restaurar y recuperar superficies sin dañarlas.
+              Pedí una evaluación y te contamos cómo la limpieza laser puede
+              recuperar tu superficie sin dañarla.
             </p>
           </Reveal>
         </div>
@@ -129,7 +129,7 @@ export function Contact() {
                   </a>
                   <a
                     href={`tel:${site.phone}`}
-                    className="mt-1 inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-laser-200"
+                    className="mt-1 inline-flex min-h-11 items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-laser-200"
                   >
                     <Phone className="size-3.5" />
                     Llamar ahora

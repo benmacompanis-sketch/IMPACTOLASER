@@ -118,7 +118,7 @@ export function Hero({ started = true }: { started?: boolean }) {
 
         {/* Subtitle pills */}
         <p className="sr-only">
-          Sin agua. Sin químicos. Sin abrasivos. Sin dañar la superficie original.
+          Sin agua, sin químicos, sin abrasivos y sin dañar la superficie original.
         </p>
         <motion.div variants={lineWrap} className="flex flex-wrap items-center justify-center gap-2.5">
           {subPills.map((pill) => (
@@ -160,7 +160,7 @@ export function Hero({ started = true }: { started?: boolean }) {
           hidden: { opacity: 0 },
           show: { opacity: 1, transition: { delay: 1.1, duration: 1 } },
         }}
-        className="m-show-op group absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-xs uppercase tracking-[0.2em] text-foreground/40 transition-colors hover:text-foreground/80"
+        className="m-show-op group absolute bottom-8 left-1/2 flex min-h-11 -translate-x-1/2 flex-col items-center justify-center gap-2 text-xs uppercase tracking-[0.2em] text-foreground/60 transition-colors hover:text-foreground/90"
         aria-label="Desplazarse a tecnología"
       >
         <span>Descubrí más</span>

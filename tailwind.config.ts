@@ -91,6 +91,8 @@ const config: Config = {
       },
       backgroundImage: {
         "laser-gradient": "linear-gradient(135deg, #3d8eff 0%, #2f8bff 40%, #1656bf 100%)",
+        // Fondo de botones con texto blanco: el tono más claro (#1f6fe6) ya da 4.7:1.
+        "laser-cta": "linear-gradient(135deg, #1f6fe6 0%, #1a63d6 45%, #1450b0 100%)",
         "laser-radial": "radial-gradient(circle at 50% 0%, rgba(47,139,255,0.25), transparent 60%)",
         "grid-fade":
           "linear-gradient(to bottom, transparent, #04060d), radial-gradient(rgba(47,139,255,0.08) 1px, transparent 1px)",

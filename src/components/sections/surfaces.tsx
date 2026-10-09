@@ -18,7 +18,7 @@ export function Surfaces() {
       <SectionHeading
         eyebrow="Superficies"
         title="Calibrado para cada material"
-        description="Ajustamos longitud de onda y potencia según el sustrato. Desde metales nobles hasta piedra histórica y maderas delicadas."
+        description="Ajustamos la longitud de onda y la potencia a cada material. Un metal noble, una piedra histórica y una madera delicada llevan parámetros distintos."
       />
 
       <div className="mt-16 grid gap-5 lg:grid-cols-3">

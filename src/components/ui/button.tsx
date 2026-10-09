@@ -10,7 +10,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          "bg-laser-gradient text-white shadow-glow hover:shadow-glow-lg hover:brightness-110",
+          "bg-laser-cta text-white shadow-glow hover:shadow-glow-lg hover:brightness-110",
         outline:
           "border border-laser-500/40 bg-white/[0.03] text-laser-50 backdrop-blur-sm hover:bg-laser-500/10 hover:border-laser-400/70",
         ghost: "text-foreground/80 hover:text-foreground hover:bg-white/[0.05]",

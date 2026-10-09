@@ -11,8 +11,8 @@ export function WhatWeRemove() {
     <Section id="que-removemos">
       <SectionHeading
         eyebrow="Qué removemos"
-        title="Disolvemos lo que otros no pueden"
-        description="Pintura, óxido, grasa o grafitis: el laser separa el contaminante del material sin tocarlo. Esto es lo que eliminamos a diario."
+        title="Pintura, óxido, grasa y grafitis"
+        description="El laser los separa del material sin tocarlo. Esto es lo que sacamos a diario."
       />
 
       <RevealGroup

@@ -57,7 +57,7 @@ export const removals: RemovalItem[] = [
   { title: "Grasas", description: "Grasa industrial y de cocina, incluso carbonizada." },
   { title: "Grafitis", description: "Vandalismo y pintadas sobre fachadas y patrimonio." },
   { title: "Suciedad extrema", description: "Hollín, polución y depósitos de difícil acceso." },
-  { title: "Manchas antiguas", description: "Marcas envejecidas que otros métodos no logran quitar." },
+  { title: "Manchas antiguas", description: "Manchas viejas y marcas difíciles de quitar." },
 ];
 
 /* ── Superficies ── */
@@ -185,7 +185,7 @@ export const faqs: Faq[] = [
   {
     question: "¿La limpieza laser daña la superficie?",
     answer:
-      "No, si se calibra bien. Por eso siempre arrancamos con pruebas a baja energía y ajustamos hasta sacar la suciedad, el óxido o la pintura sin marcar el material de abajo. En superficies delicadas, como la madera, esa prueba es clave. Por esa precisión se usa en patrimonio y piezas de alto valor.",
+      "No, si se calibra bien. Por eso siempre arrancamos con pruebas a baja energía y ajustamos hasta sacar la suciedad, el óxido o la pintura sin marcar el material de abajo. En superficies delicadas, como la madera, esa prueba es la que evita marcas. Por esa precisión se usa en patrimonio y piezas de alto valor.",
   },
   {
     question: "¿Utiliza químicos?",
@@ -210,11 +210,11 @@ export const faqs: Faq[] = [
   {
     question: "¿Puede utilizarse en patrimonio histórico?",
     answer:
-      "Sí, es uno de sus usos más valiosos. Por su precisión y su carácter no abrasivo, se utiliza en monumentos, museos, iglesias y restauraciones donde conservar la superficie original es prioritario.",
+      "Sí. Como es precisa y no abrasiva, se usa en monumentos, museos, iglesias y restauraciones donde hay que conservar la superficie original.",
   },
   {
     question: "¿Puede utilizarse en piezas industriales?",
     answer:
-      "Absolutamente. Motores, autopartes, moldes y maquinaria: removemos óxido, grasa y pintura sin desgaste dimensional, ideal para mantenimiento y preparación de superficies.",
+      "Sí. En motores, autopartes, moldes y maquinaria sacamos óxido, grasa y pintura sin desgaste dimensional. Sirve para mantenimiento y para preparar superficies.",
   },
 ];

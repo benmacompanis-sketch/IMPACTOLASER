@@ -53,8 +53,10 @@ export function TextReveal({
       initial="hidden"
       whileInView="visible"
       viewport={{ once, margin: REVEAL_VIEWPORT_MARGIN }}
-      aria-label={text}
     >
+      {/* Las palabras animadas están ocultas para lectores de pantalla; este es
+          el texto que leen (aria-label en un span no lo anuncia ninguno). */}
+      <span className="sr-only">{text}</span>
       {words.map((w, i) => (
         <Fragment key={i}>
           <span className="inline-block overflow-hidden py-[0.08em] align-bottom">

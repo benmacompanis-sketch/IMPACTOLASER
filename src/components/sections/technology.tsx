@@ -17,11 +17,11 @@ export function Technology() {
         title="¿Qué es la limpieza laser?"
         description={
           <>
-            La limpieza laser elimina únicamente la suciedad, pintura, óxido y
-            contaminantes superficiales{" "}
-            <span className="text-foreground">sin afectar el material original.</span>{" "}
-            Un haz de alta precisión vaporiza la capa contaminante por ablación,
-            sin contacto, sin agua y sin químicos.
+            La limpieza laser saca la suciedad, la pintura, el óxido y otros
+            contaminantes de la superficie{" "}
+            <span className="text-foreground">sin afectar el material de abajo.</span>{" "}
+            Un haz de luz vaporiza esa capa (el proceso se llama ablación) sin
+            tocar la pieza y sin usar agua ni químicos.
           </>
         }
       />
@@ -34,8 +34,7 @@ export function Technology() {
         <p className="mx-auto mt-5 max-w-2xl text-center text-sm text-muted-foreground">
           <span className="text-foreground">Arrastrá el laser de lado a lado.</span> A la{" "}
           <span className="text-laser-200">izquierda</span> queda la superficie original recuperada;
-          a la <span className="text-amber-200/90">derecha</span>, la suciedad antes de limpiar. El
-          laser solo elimina lo que está por encima del material, sin tocarlo.
+          a la <span className="text-amber-200/90">derecha</span>, la suciedad antes de limpiar.
         </p>
       </Reveal>
 

@@ -20,8 +20,8 @@ export function Faq() {
         <SectionHeading
           align="left"
           eyebrow="Preguntas frecuentes"
-          title="Todo lo que querés saber"
-          description="Respuestas claras sobre cómo funciona la limpieza laser y por qué no daña la superficie."
+          title="Lo que más nos preguntan"
+          description="Cómo funciona la limpieza laser y qué cuidados hay que tener."
           className="lg:sticky lg:top-28 lg:self-start"
         />
 
@@ -38,7 +38,7 @@ export function Faq() {
               <AccordionItem value={`item-${i}`}>
                 <AccordionTrigger>
                   <span className="flex items-center gap-4">
-                    <span className="font-mono text-xs text-laser-300/50 transition-colors group-hover:text-laser-300">
+                    <span className="font-mono text-xs text-laser-300/80 transition-colors group-hover:text-laser-300">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     {faq.question}

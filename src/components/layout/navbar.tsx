@@ -62,8 +62,8 @@ export function Navbar({ started = true }: { started?: boolean }) {
           <a
             href="#inicio"
             onClick={(e) => handleNav(e, "#inicio")}
-            className="group flex items-center gap-2"
-            aria-label={`${"IMPACTO LASER"} — inicio`}
+            className="group flex min-h-11 items-center gap-2"
+            aria-label="IMPACTO LASER, ir al inicio"
           >
             <Logo variant="mark" className="h-9 w-auto -translate-y-1 sm:h-11" priority />
           </a>
@@ -95,7 +95,7 @@ export function Navbar({ started = true }: { started?: boolean }) {
             </div>
             <button
               onClick={() => setOpen((v) => !v)}
-              className="flex size-10 items-center justify-center rounded-xl text-white/80 transition-colors hover:bg-white/5 hover:text-white lg:hidden"
+              className="flex size-11 items-center justify-center rounded-xl text-white/80 transition-colors hover:bg-white/5 hover:text-white lg:hidden"
               aria-label={open ? "Cerrar menú" : "Abrir menú"}
               aria-expanded={open}
             >

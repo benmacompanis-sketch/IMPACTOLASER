@@ -29,8 +29,8 @@ export function Comparison() {
     <Section id="diferencia">
       <SectionHeading
         eyebrow="La diferencia"
-        title="No es limpiar. Es no dañar."
-        description="Los métodos tradicionales desgastan, mojan y contaminan. El laser trabaja con luz: precisión pura, sin tocar la superficie."
+        title="Limpiar sin dañar la superficie"
+        description="Los métodos tradicionales usan agua, químicos o abrasivos, y eso desgasta o ensucia la pieza. El laser trabaja con luz y no toca la superficie."
       />
 
       <div className="relative mt-16 grid items-stretch gap-5 lg:grid-cols-2">
@@ -38,7 +38,7 @@ export function Comparison() {
         <Reveal>
           <TiltCard intensity={5} glow={false} className="h-full">
             <div className="relative h-full overflow-hidden rounded-3xl border border-red-500/15 bg-red-950/10 p-8">
-              <span className="text-xs font-medium uppercase tracking-[0.25em] text-red-300/60">
+              <span className="text-xs font-medium uppercase tracking-[0.25em] text-red-300/80">
                 Métodos tradicionales
               </span>
               <h3 className="mt-2 font-display text-2xl font-semibold text-foreground/80">
